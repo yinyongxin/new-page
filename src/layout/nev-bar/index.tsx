@@ -35,8 +35,10 @@ const NavBar = (props: NavBarProps) => {
 
 	const { position = navBarPosition, blur = navBarBlur } = props;
 
-	let ref!: HTMLDivElement;
-	const [open, setOpen] = createSignal(false);
+	let homeCef!: HTMLDivElement;
+	let settingRef!: HTMLDivElement;
+	const [homeOpen, setHomeOpen] = createSignal(false);
+	const [settingOpen, setSettingOpen] = createSignal(false);
 	return (
 		<nav class={cn(navBarVariants({ position }), classes.navBar)}>
 			<div
@@ -52,25 +54,29 @@ const NavBar = (props: NavBarProps) => {
 				})}
 			>
 				<div
-					ref={ref}
+					ref={homeCef}
 					class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
 					onClick={() => {
-						setOpen(!open());
+            setHomeOpen(!homeOpen());
 					}}
-				>
+          >
 					<Home />
 				</div>
 				<div
+          ref={settingRef}
 					class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
 					onClick={() => {
-						setOpen(!open());
+						setSettingOpen(!settingOpen());
 					}}
 				>
 					<Settings class="animate-[spin_3s_linear_infinite]" />
 				</div>
 			</div>
-			<AppPupop open={open()} trigger={ref}>
-				<div>My Content</div>
+			<AppPupop open={homeOpen()} trigger={homeCef}>
+				<div>home</div>
+			</AppPupop>
+      <AppPupop open={settingOpen()} trigger={settingRef}>
+				<div>setting</div>
 			</AppPupop>
 		</nav>
 	);

@@ -1,7 +1,6 @@
 import {
 	createEffect,
 	createSignal,
-	mergeProps,
 	ParentProps,
 	Show,
 	splitProps,
@@ -17,16 +16,28 @@ export type AppPupopProps = ParentProps<{
 const AppPupop = (props: AppPupopProps) => {
 	const [local, ohterProps] = splitProps(props, ["open"]);
 
-	const { trigger, position = "center", distance = "0.8rem" } = ohterProps;
+	const {
+		trigger,
+		position = "center",
+		distance = "0.8rem",
+		children,
+	} = ohterProps;
 
 	// const { position, distance } = mergeProps(
 	// 	{ position = "center", distance = "0.8rem" },
 	// 	props
 	// );
 
-	const [boundingClientRect, setBoundingClientRect] = createSignal<DOMRect>(
-		new DOMRect(0, 0, 0, 0)
-	);
+	const [triggerBorderPosition, setTriggerBorderPosition] = createSignal({
+		top: 0,
+		right: 0,
+		bottom: 0,
+		left: 0,
+		x: 0,
+		y: 0,
+		height: 0,
+		width: 0,
+	});
 
 	let ref!: HTMLDivElement;
 	const [corruntBoundingClientRect, setCorruntBoundingClientRect] =
@@ -34,7 +45,13 @@ const AppPupop = (props: AppPupopProps) => {
 
 	createEffect(() => {
 		if (trigger) {
-			setBoundingClientRect(trigger.getBoundingClientRect());
+			const triggerBoundingClientRect = trigger.getBoundingClientRect();
+			setTriggerBorderPosition({
+				right: triggerBoundingClientRect.left + triggerBoundingClientRect.width,
+				bottom:
+					triggerBoundingClientRect.top + triggerBoundingClientRect.height,
+				...triggerBoundingClientRect.toJSON(),
+			});
 			setCorruntBoundingClientRect(ref.getBoundingClientRect());
 		}
 	});
@@ -44,7 +61,7 @@ const AppPupop = (props: AppPupopProps) => {
 			top: "top-0 left-1/2 -translate-x-1/2",
 			right: "right-0 top-1/2 -translate-y-1/2",
 			bottom: "bottom-0 left-1/2 -translate-x-1/2",
-			left: "left-0 left-1/2 -translate-x-1/2",
+			left: "left-0 left-1/2 -translate-y-1/2",
 			center: "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
 		};
 		return obj[position];
@@ -55,15 +72,16 @@ const AppPupop = (props: AppPupopProps) => {
 			return {};
 		}
 		return {
-			top: `calc( ${
-				boundingClientRect()?.top + boundingClientRect()?.height
-			}px + ${distance})`,
-			left: boundingClientRect()?.left + "px",
-			transform: `translateX(calc(-50% + ${
-				boundingClientRect()?.width / 2
-			}px)) scale(0.05)`,
+			top: `${triggerBorderPosition().bottom}px`,
+			left: `${triggerBorderPosition().left}px`,
+			transform: `
+        translateX(
+          calc(-50% + ${triggerBorderPosition()?.width / 2}px)
+        ) 
+        scale(0.05)
+      `,
 			"transform-origin": "top",
-      opacity: "0"
+			// opacity: "0",
 		};
 	};
 
@@ -73,15 +91,22 @@ const AppPupop = (props: AppPupopProps) => {
 				<div
 					ref={ref}
 					class={cn(
-						"bg-black/40 z-50 w-[600px] h-[400px] rounded-xl absolute flex transition-all duration-[1000ms]",
+						"bg-black/40 z-50 w-[600px] h-[400px] rounded-xl absolute transition-all ease-in-out duration-300",
 						{
 							[positionClass()]: local.open,
 						}
 					)}
-					style={getStyle()}
+					style={{
+						...getStyle(),
+						// visibility: local.open ? "visible" : "hidden",
+					}}
 				>
-					<div class="flex-1 h-full bg-red-500/10 "></div>
-					<div class="flex-1 h-full bg-green-500/10"></div>
+					<div class="grid grid-cols-2 grid-rows-2 h-full">
+						<div class="bg-red-500/20">{children}</div>
+						<div class="bg-green-500/20">{children}</div>
+						<div class="bg-yellow-500/20">{children}</div>
+						<div class="bg-purple-500-500/20">{children}</div>
+					</div>
 				</div>
 			</Portal>
 		</Show>
