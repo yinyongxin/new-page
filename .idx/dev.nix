@@ -1,29 +1,29 @@
-# To learn more about how to use Nix to configure your environment
-# see: https://developers.google.com/idx/guides/customize-idx-env
+# 了解有关如何使用 Nix 配置环境的更多信息
+# 请参阅：https://developers.google.com/idx/guides/customize-idx-env
 { pkgs, ... }: {
-  # Which nixpkgs channel to use.
-  channel = "stable-24.05"; # or "unstable"
-  # Use https://search.nixos.org/packages to find packages
+  # 指定使用的 nixpkgs 渠道
+  channel = "stable-24.05"; # 或者 "unstable"
+  # 使用 https://search.nixos.org/packages 查找可用包
   packages = [
     pkgs.nodejs_20
   ];
-  # Sets environment variables in the workspace
+  # 在工作区中设置环境变量
   env = { };
   idx = {
-    # Search for the extensions you want on https://open-vsx.org/ and use "publisher.id"
+    # 在 https://open-vsx.org/ 上查找所需的扩展，并使用 "publisher.id"
     extensions = [
       # "vscodevim.vim"
     ];
     workspace = {
-      # Runs when a workspace is first created with this `dev.nix` file
+      # 当首次使用此 `dev.nix` 文件创建工作区时执行的操作
       onCreate = {
         # npm-install = "npm ci --no-audit --prefer-offline --no-progress --timing";
-        # Open editors for the following files by default, if they exist:
+        # 默认情况下打开以下文件（如果存在）：
         # default.openFiles = [ "src/App.tsx" "src/App.ts" "src/App.jsx" "src/App.js" ];
       };
-      # To run something each time the workspace is (re)started, use the `onStart` hook
+      # 要在每次启动或重新启动工作区时运行某些操作，请使用 `onStart` 钩子
     };
-    # Enable previews and customize configuration
+    # 启用预览并自定义配置
     previews = {
       enable = true;
       previews = {
