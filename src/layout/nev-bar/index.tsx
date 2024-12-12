@@ -9,7 +9,7 @@ const positionOptions: Record<Position.types, string> = {
   left: "top-4 bottom-4 left-4",
 };
 
-const navBarVariants = cva("absolute p-4 rounded-xl z-100s", {
+const navBarVariants = cva("absolute p-3 rounded-xl z-100s", {
   variants: {
     position: positionOptions,
   },
@@ -19,7 +19,7 @@ const navBarVariants = cva("absolute p-4 rounded-xl z-100s", {
 });
 
 type NavBarProps = {
-  blur: boolean;
+  blur?: boolean;
 } & VariantProps<typeof navBarVariants>;
 
 const NavBar = (props: NavBarProps) => {
@@ -34,7 +34,7 @@ const NavBar = (props: NavBarProps) => {
         })}
       ></div>
       <div class="relative text-white">
-        <div class="h-10 w-10"></div>
+        <div class="h-10 w-10 bg-black/20 rounded-xl"></div>
       </div>
     </nav>
   );
