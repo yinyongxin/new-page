@@ -1,7 +1,6 @@
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "../../utils/style";
 import classes from "./index.module.css";
-import { Home } from "lucide-solid";
 
 const positionOptions: Record<Position.types, string> = {
   top: "top-4 left-4 right-4",
@@ -35,7 +34,7 @@ const NavBar = (props: NavBarProps) => {
         })}
       ></div>
       <div class="relative text-white">
-        <div class="h-10 w-10 bg-cyan-500">{/* <Home /> */}</div>
+        <div class="h-10 w-10"></div>
       </div>
     </nav>
   );
