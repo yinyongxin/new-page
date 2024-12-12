@@ -1,12 +1,11 @@
 import NavBar from "./layout/nev-bar";
+import classes from "./app.module.css";
+import { cn } from "./utils/style";
 
 function App() {
   return (
-    <div class="bg-pink-100 absolute inset-0">
+    <div class={cn("absolute inset-0", classes.app)}>
       <NavBar />
-      <div class="text-red-500 text-xl">aasads</div>
-      <div class="text-red-500 text-xl">aasads</div>
-      <div class="text-red-500 text-xl">aasads</div>
     </div>
   );
 }

@@ -1,3 +1,11 @@
 html {
   font-size: 16px;
 }
+body {
+  /* background: rgb(152, 228, 255);
+  background: radial-gradient(
+    circle,
+    rgba(152, 228, 255, 1) 20%,
+    rgba(0, 109, 237, 1) 100%
+  ); */
+}
