@@ -1,6 +1,8 @@
 import {
 	createEffect,
 	createSignal,
+	onCleanup,
+	onMount,
 	ParentProps,
 	Show,
 	splitProps,
@@ -8,10 +10,11 @@ import {
 import { Portal } from "solid-js/web";
 import { cn } from "../../utils/style";
 export type AppPupopProps = ParentProps<{
-	open: boolean;
+	open?: boolean;
 	position?: Position.types | "center";
 	trigger?: Element;
 	distance?: string;
+	active?: "click" | "mouseenter";
 }>;
 const AppPupop = (props: AppPupopProps) => {
 	const [local, ohterProps] = splitProps(props, ["open"]);
@@ -21,12 +24,10 @@ const AppPupop = (props: AppPupopProps) => {
 		position = "center",
 		distance = "0.8rem",
 		children,
+		active,
 	} = ohterProps;
 
-	// const { position, distance } = mergeProps(
-	// 	{ position = "center", distance = "0.8rem" },
-	// 	props
-	// );
+	const [open, setOpen] = createSignal(local.open || false);
 
 	const [triggerBorderPosition, setTriggerBorderPosition] = createSignal({
 		top: 0,
@@ -40,19 +41,44 @@ const AppPupop = (props: AppPupopProps) => {
 	});
 
 	let ref!: HTMLDivElement;
-	const [corruntBoundingClientRect, setCorruntBoundingClientRect] =
+	const [_corruntBoundingClientRect, setCorruntBoundingClientRect] =
 		createSignal<DOMRect>(new DOMRect(0, 0, 0, 0));
 
-	createEffect(() => {
+	onMount(() => {
 		if (trigger) {
-			const triggerBoundingClientRect = trigger.getBoundingClientRect();
-			setTriggerBorderPosition({
-				right: triggerBoundingClientRect.left + triggerBoundingClientRect.width,
-				bottom:
-					triggerBoundingClientRect.top + triggerBoundingClientRect.height,
-				...triggerBoundingClientRect.toJSON(),
+			const updateTriggerPosition = () => {
+				const triggerBoundingClientRect = trigger.getBoundingClientRect();
+				setTriggerBorderPosition({
+					right:
+						triggerBoundingClientRect.left + triggerBoundingClientRect.width,
+					bottom:
+						triggerBoundingClientRect.top + triggerBoundingClientRect.height,
+					...triggerBoundingClientRect.toJSON(),
+				});
+				setCorruntBoundingClientRect(ref.getBoundingClientRect());
+			};
+
+			updateTriggerPosition();
+
+			window.addEventListener("resize", updateTriggerPosition);
+
+			onCleanup(() => {
+				window.removeEventListener("resize", updateTriggerPosition);
 			});
-			setCorruntBoundingClientRect(ref.getBoundingClientRect());
+		}
+	});
+
+	createEffect(() => {
+		if (active && trigger) {
+			const handleClick = () => {
+				setOpen(!open());
+			};
+
+			trigger.addEventListener(active, handleClick);
+
+			onCleanup(() => {
+				trigger.removeEventListener(active, handleClick);
+			});
 		}
 	});
 
@@ -68,7 +94,7 @@ const AppPupop = (props: AppPupopProps) => {
 	};
 
 	const getStyle = () => {
-		if (local.open) {
+		if (open()) {
 			return {};
 		}
 		return {
@@ -93,12 +119,12 @@ const AppPupop = (props: AppPupopProps) => {
 					class={cn(
 						"bg-black/40 z-50 w-[600px] h-[400px] rounded-xl absolute transition-all ease-in-out duration-300",
 						{
-							[positionClass()]: local.open,
+							[positionClass()]: open(),
 						}
 					)}
 					style={{
 						...getStyle(),
-						// visibility: local.open ? "visible" : "hidden",
+						// visibility: open() ? "visible" : "hidden",
 					}}
 				>
 					<div class="grid grid-cols-2 grid-rows-2 h-full">
