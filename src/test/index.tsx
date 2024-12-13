@@ -74,6 +74,7 @@ const AppPupopTest = () => {
         active="click"
         trigger={bottomRef}
         position="top"
+        alignment="left"
         center={false}
       >
         bottom
@@ -83,6 +84,7 @@ const AppPupopTest = () => {
         trigger={leftRef}
         position="right"
         center={false}
+        alignment="top"
       >
         left
       </AppPupop>

@@ -13,6 +13,7 @@ import { cn } from "../../utils/style";
 export type AppPupopProps = ParentProps<{
   open?: boolean;
   position?: Position.types;
+  alignment?: Position.types | "default";
   trigger?: Element;
   distance?: string;
   active?: "click" | "mouseenter";
@@ -24,6 +25,7 @@ const AppPupop = (props: AppPupopProps) => {
   const {
     trigger,
     position = "top",
+    alignment = "default",
     distance = "0.8rem",
     center = true,
     children,
@@ -44,7 +46,7 @@ const AppPupop = (props: AppPupopProps) => {
   });
 
   createEffect(() => {
-    setOpen(local.open || false);
+    setOpen(local.open || true);
   });
 
   let ref!: HTMLDivElement;
@@ -91,39 +93,114 @@ const AppPupop = (props: AppPupopProps) => {
   const getStyle = () => {
     let style!: JSX.CSSProperties;
     if (open()) {
-      const topObj: Record<Position.types, string> = {
-        top: `calc(${triggerBorderPosition().top}px - ${distance})`,
-        right: `${
-          triggerBorderPosition().top + triggerBorderPosition().height / 2
-        }px`,
-        bottom: `calc(${
-          triggerBorderPosition().top + triggerBorderPosition().height
-        }px + ${distance})`,
-        left: `${
-          triggerBorderPosition().top + triggerBorderPosition().height / 2
-        }px`,
+      const styleObj: Record<
+        Position.types,
+        Partial<
+          Record<
+            Position.types | "default",
+            Pick<JSX.CSSProperties, "top" | "left" | "transform">
+          >
+        >
+      > = {
+        top: {
+          right: {
+            top: `calc(${triggerBorderPosition().top}px - ${distance})`,
+            left: `${
+              triggerBorderPosition().left + triggerBorderPosition().width
+            }px`,
+            transform: `translateX(-100%) translateY(-100%)`,
+          },
+          left: {
+            top: `calc(${triggerBorderPosition().top}px - ${distance})`,
+            left: `${triggerBorderPosition().left}px`,
+            transform: `translateY(-100%)`,
+          },
+          default: {
+            top: `calc(${triggerBorderPosition().top}px - ${distance})`,
+            left: `${
+              triggerBorderPosition().left + triggerBorderPosition().width * 0.5
+            }px`,
+            transform: `translateX(-50%) translateY(-100%)`,
+          },
+        },
+        right: {
+          top: {
+            top: `${
+              triggerBorderPosition().top + triggerBorderPosition().height / 2
+            }px`,
+            left: `calc(${triggerBorderPosition().right}px + ${distance})`,
+            transform: `translateY(-50%)`,
+          },
+          left: {
+            top: `${
+              triggerBorderPosition().top + triggerBorderPosition().height / 2
+            }px`,
+            left: `calc(${triggerBorderPosition().right}px + ${distance})`,
+            transform: `translateY(-50%)`,
+          },
+          default: {
+            top: `${
+              triggerBorderPosition().top + triggerBorderPosition().height / 2
+            }px`,
+            left: `calc(${triggerBorderPosition().right}px + ${distance})`,
+            transform: `translateY(-50%)`,
+          },
+        },
+        bottom: {
+          right: {
+            top: `calc(${
+              triggerBorderPosition().top + triggerBorderPosition().height
+            }px + ${distance})`,
+            left: `${
+              triggerBorderPosition().left + triggerBorderPosition().width
+            }px`,
+            transform: `translateX(-100%)`,
+          },
+          left: {
+            top: `calc(${
+              triggerBorderPosition().top + triggerBorderPosition().height
+            }px + ${distance})`,
+            left: `${triggerBorderPosition().left}px`,
+            transform: `translateX(0%)`,
+          },
+          default: {
+            top: `calc(${
+              triggerBorderPosition().top + triggerBorderPosition().height
+            }px + ${distance})`,
+            left: `${
+              triggerBorderPosition().left + triggerBorderPosition().width * 0.5
+            }px`,
+            transform: `translateX(-50%)`,
+          },
+        },
+        left: {
+          top: {
+            top: `${
+              triggerBorderPosition().top + triggerBorderPosition().height / 2
+            }px`,
+            left: `calc(${triggerBorderPosition().left}px - ${distance})`,
+            transform: `translateX(-100%) translateY(-50%)`,
+          },
+          left: {
+            top: `${
+              triggerBorderPosition().top + triggerBorderPosition().height / 2
+            }px`,
+            left: `calc(${triggerBorderPosition().left}px - ${distance})`,
+            transform: `translateX(-100%) translateY(-50%)`,
+          },
+          default: {
+            top: `${
+              triggerBorderPosition().top + triggerBorderPosition().height / 2
+            }px`,
+            left: `calc(${triggerBorderPosition().left}px - ${distance})`,
+            transform: `translateX(-100%) translateY(-50%)`,
+          },
+        },
       };
-      const leftObj: Record<Position.types, string> = {
-        top: `${
-          triggerBorderPosition().left + triggerBorderPosition().width * 0.5
-        }px`,
-        right: `calc(${triggerBorderPosition().right}px + ${distance})`,
-        bottom: `${
-          triggerBorderPosition().left + triggerBorderPosition().width * 0.5
-        }px`,
-        left: `calc(${triggerBorderPosition().left}px - ${distance})`,
-      };
-      const transformObj: Record<Position.types, string> = {
-        top: `translateX(-50%) translateY(-100%)`,
-        right: `translateY(-50%)`,
-        bottom: `translateX(-50%)`,
-        left: `translateX(-100%) translateY(-50%)`,
-      };
+      console.log("alignment", alignment);
       style = {
         "pointer-events": "unset",
-        top: !center ? topObj[position] : "",
-        left: !center ? leftObj[position] : "",
-        transform: !center ? transformObj[position] : "",
+        ...(center ? {} : styleObj[position][alignment]),
       };
     } else {
       style = {
