@@ -28,7 +28,7 @@ const AppPupop = (props: AppPupopProps) => {
     active,
   } = ohterProps;
 
-  const [open, setOpen] = createSignal(local.open || false);
+  const [open, setOpen] = createSignal(false);
 
   const [triggerBorderPosition, setTriggerBorderPosition] = createSignal({
     top: 0,
@@ -39,6 +39,10 @@ const AppPupop = (props: AppPupopProps) => {
     y: 0,
     height: 0,
     width: 0,
+  });
+
+  createEffect(() => {
+    setOpen(local.open || false);
   });
 
   let ref!: HTMLDivElement;
@@ -82,39 +86,72 @@ const AppPupop = (props: AppPupopProps) => {
     }
   });
 
-  const positionClass = () => {
-    const obj = {
-      top: "top-0 left-1/2 -translate-x-1/2",
-      right: "right-0 top-1/2 -translate-y-1/2",
-      bottom: "bottom-0 left-1/2 -translate-x-1/2",
-      left: "left-0 left-1/2 -translate-y-1/2",
-      center: "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2",
-    };
-    return obj[position];
-  };
-
   const getStyle = () => {
+    let initPosition!: JSX.CSSProperties;
     if (open()) {
-      return {};
+      const getTop = () => {
+        const obj = {
+          top: `${triggerBorderPosition().top}px`,
+          right: `${
+            triggerBorderPosition().top + triggerBorderPosition().height / 2
+          }px`,
+          bottom: `${
+            triggerBorderPosition().top + triggerBorderPosition().height
+          }px`,
+          left: `${
+            triggerBorderPosition().top + triggerBorderPosition().height / 2
+          }px`,
+        };
+        return obj[position as keyof typeof obj];
+      };
+      const getLeft = () => {
+        const obj = {
+          top: `${
+            triggerBorderPosition().left + triggerBorderPosition().width * 0.5
+          }px`,
+          right: `${triggerBorderPosition().right}px`,
+          bottom: `${
+            triggerBorderPosition().left + triggerBorderPosition().width * 0.5
+          }px`,
+          left: `${triggerBorderPosition().left}px`,
+        };
+        console.log("position", position);
+        return obj[position as keyof typeof obj];
+      };
+      const transformObj = {
+        top: `translateX(-50%) translateY(-100%)`,
+        right: `translateY(-50%)`,
+        bottom: `translateX(-50%)`,
+        left: `translateX(-100%) translateY(-50%)`,
+      };
+      initPosition = {
+        "pointer-events": "none",
+        top: getTop(),
+        left: getLeft(),
+        transform: transformObj[position as keyof typeof transformObj],
+      };
+      console.log("initPosition", initPosition);
+    } else {
+      initPosition = {
+        top: `${
+          triggerBorderPosition().top + triggerBorderPosition().width * 0.5
+        }px`,
+        left: `${
+          triggerBorderPosition().left + triggerBorderPosition().height * 0.5
+        }px`,
+        transform: `
+					translateX(
+						calc(-50%)
+					)
+					translateY(
+						calc(-50%)
+					)
+					scale(0.05)
+				`,
+        // opacity: "0",
+        "pointer-events": "unset",
+      };
     }
-    const initPosition: JSX.CSSProperties = {
-      top: `${
-        triggerBorderPosition().top + triggerBorderPosition().width * 0.5
-      }px`,
-      left: `${
-        triggerBorderPosition().left + triggerBorderPosition().height * 0.5
-      }px`,
-      transform: `
-        translateX(
-          calc(-50%)
-        )
-      	translateY(
-      		calc(-50%)
-      	)
-				scale(0.05)
-      `,
-      // opacity: "0",
-    };
     return initPosition;
   };
 
@@ -124,25 +161,21 @@ const AppPupop = (props: AppPupopProps) => {
         <div
           ref={ref}
           class={cn(
-            " z-50 w-[600px] h-[400px] rounded-xl absolute transition-all ease-in-out duration-300",
+            "z-50 w-[600px] h-[400px] absolute transition-all ease-in-out duration-300",
             {
-              [positionClass()]: open(),
+              "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2":
+                open() && position === "center",
             }
           )}
           style={{
             ...getStyle(),
-            // visibility: open() ? "visible" : "hidden",
           }}
-          onClick={
-            active === "click"
-              ? () => {
-                  setOpen(!open());
-                }
-              : undefined
-          }
+          onClick={() => {
+            setOpen(false);
+          }}
         >
-          <div class="bg-black/50 absolute inset-0"></div>
-          <div class="absolute inset-0">
+          <div class="bg-black/50 absolute inset-0 rounded-xl z-[51]"></div>
+          <div class="absolute inset-0 z-[52]">
             <div class="grid grid-cols-2 grid-rows-2 h-full">
               <div class="bg-red-500/50 flex justify-center items-center">
                 {children}

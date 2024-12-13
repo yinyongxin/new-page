@@ -51,19 +51,19 @@ const AppPupopTest = () => {
         </div>
       </div>
 
-      <AppPupop active="click" trigger={topRef}>
+      <AppPupop active="click" trigger={topRef} position="bottom">
         top
       </AppPupop>
-      <AppPupop active="click" trigger={rightRef}>
+      <AppPupop active="click" trigger={rightRef} position="left">
         right
       </AppPupop>
-      <AppPupop active="click" trigger={centerRef}>
+      <AppPupop active="click" trigger={centerRef} position="center">
         center
       </AppPupop>
-      <AppPupop active="click" trigger={bottomRef}>
+      <AppPupop active="click" trigger={bottomRef} position="top">
         bottom
       </AppPupop>
-      <AppPupop active="click" trigger={leftRef}>
+      <AppPupop active="click" trigger={leftRef} position="right">
         left
       </AppPupop>
     </div>
