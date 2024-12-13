@@ -3,9 +3,9 @@ import AppPupop from "../../../../components/app-pupop";
 import { useContext } from "solid-js";
 import { AppContext } from "../../../../app-conetent";
 const Setting = () => {
-  console.log("setting");
-  let settingRef!: HTMLDivElement;
   const { appContext } = useContext(AppContext);
+  let settingRef!: HTMLDivElement;
+
   return (
     <>
       <div

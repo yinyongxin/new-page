@@ -9,6 +9,7 @@ import {
   ParentProps,
   Show,
   splitProps,
+  mergeProps,
 } from "solid-js";
 import { Portal } from "solid-js/web";
 import { cn } from "../../utils/style";
@@ -26,11 +27,10 @@ export type AppPupopProps = ParentProps<{
   style?: JSX.CSSProperties;
 }>;
 const AppPupop = (props: AppPupopProps) => {
-  const [local, ohterProps] = splitProps(props, ["open"]);
-
+  const merged = mergeProps({ position: "top", open: false }, props);
+  const [local, ohterProps] = splitProps(merged, ["open", "position"]);
   const {
     trigger,
-    position = "top",
     alignment = "default",
     distance = "0.8rem",
     center = true,
@@ -41,7 +41,7 @@ const AppPupop = (props: AppPupopProps) => {
     active = "click",
     style,
   } = ohterProps;
-
+  const [position, setPosition] = createSignal<Position.types>("top");
   const [open, setOpen] = createSignal(false);
   const [triggerBorderPosition, setTriggerBorderPosition] = createSignal({
     top: 0,
@@ -54,8 +54,25 @@ const AppPupop = (props: AppPupopProps) => {
     width: 0,
   });
 
+  const updateTriggerPosition = () => {
+    const triggerBoundingClientRect = trigger!.getBoundingClientRect();
+    batch(() => {
+      setTriggerBorderPosition({
+        right: triggerBoundingClientRect.left + triggerBoundingClientRect.width,
+        bottom:
+          triggerBoundingClientRect.top + triggerBoundingClientRect.height,
+        ...triggerBoundingClientRect.toJSON(),
+      });
+      setCorruntBoundingClientRect(ref.getBoundingClientRect());
+    });
+  };
+
   createEffect(() => {
-    setOpen(local.open || false);
+    batch(() => {
+      setOpen(local.open);
+      setPosition(local.position);
+    });
+    updateTriggerPosition();
   });
 
   let ref!: HTMLDivElement;
@@ -64,20 +81,6 @@ const AppPupop = (props: AppPupopProps) => {
 
   onMount(() => {
     if (trigger) {
-      const updateTriggerPosition = () => {
-        const triggerBoundingClientRect = trigger.getBoundingClientRect();
-        batch(() => {
-          setTriggerBorderPosition({
-            right:
-              triggerBoundingClientRect.left + triggerBoundingClientRect.width,
-            bottom:
-              triggerBoundingClientRect.top + triggerBoundingClientRect.height,
-            ...triggerBoundingClientRect.toJSON(),
-          });
-          setCorruntBoundingClientRect(ref.getBoundingClientRect());
-        });
-      };
-
       updateTriggerPosition();
 
       window.addEventListener("resize", updateTriggerPosition);
@@ -211,7 +214,7 @@ const AppPupop = (props: AppPupopProps) => {
         "pointer-events": "unset",
         ...(center
           ? {}
-          : styleObj[position][alignment] || styleObj[position].default),
+          : styleObj[position()][alignment] || styleObj[position()].default),
       };
     } else {
       resStyle = {
