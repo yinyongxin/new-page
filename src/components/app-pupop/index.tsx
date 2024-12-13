@@ -12,28 +12,38 @@ import {
 } from "solid-js";
 import { Portal } from "solid-js/web";
 import { cn } from "../../utils/style";
-export type AppPupopProps = ParentProps<{
-	width?: string;
-	height?: string;
-	open?: boolean;
+type IsCenter = {
+	center?: true;
 	position?: Position.types;
 	alignment?: Position.types | "default";
-	triggerElement?: Element;
 	distance?: string;
-	active?: "click" | "mouseenter";
-	center?: boolean;
-	scrollElement?: Element;
-	style?: JSX.CSSProperties;
-}>;
+};
+type NotCenter = {
+	center?: false;
+	position: Position.types;
+	alignment?: Position.types | "default";
+	distance?: string;
+};
+export type AppPupopProps = ParentProps<
+	{
+		width?: string;
+		height?: string;
+		open?: boolean;
+		triggerElement?: HTMLElement;
+		active?: "click" | "mouseenter";
+		scrollElement?: HTMLElement;
+		style?: JSX.CSSProperties;
+	} & (IsCenter | NotCenter)
+>;
 const AppPupop = (props: AppPupopProps) => {
 	const merged = mergeProps({ open: false }, props);
 	const [local, ohterProps] = splitProps(merged, ["open", "position"]);
 	const {
 		triggerElement,
+		scrollElement,
+		center = true,
 		alignment = "default",
 		distance = "0.8rem",
-		center = true,
-		scrollElement,
 		width = "20rem",
 		height = "10rem",
 		children,
