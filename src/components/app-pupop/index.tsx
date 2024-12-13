@@ -12,18 +12,20 @@ import { Portal } from "solid-js/web";
 import { cn } from "../../utils/style";
 export type AppPupopProps = ParentProps<{
   open?: boolean;
-  position?: Position.types | "center";
+  position?: Position.types;
   trigger?: Element;
   distance?: string;
   active?: "click" | "mouseenter";
+  center?: boolean;
 }>;
 const AppPupop = (props: AppPupopProps) => {
   const [local, ohterProps] = splitProps(props, ["open"]);
 
   const {
     trigger,
-    position = "center",
+    position = "top",
     distance = "0.8rem",
+    center = true,
     children,
     active,
   } = ohterProps;
@@ -87,52 +89,44 @@ const AppPupop = (props: AppPupopProps) => {
   });
 
   const getStyle = () => {
-    let initPosition!: JSX.CSSProperties;
+    let style!: JSX.CSSProperties;
     if (open()) {
-      const getTop = () => {
-        const obj = {
-          top: `${triggerBorderPosition().top}px`,
-          right: `${
-            triggerBorderPosition().top + triggerBorderPosition().height / 2
-          }px`,
-          bottom: `${
-            triggerBorderPosition().top + triggerBorderPosition().height
-          }px`,
-          left: `${
-            triggerBorderPosition().top + triggerBorderPosition().height / 2
-          }px`,
-        };
-        return obj[position as keyof typeof obj];
+      const topObj: Record<Position.types, string> = {
+        top: `calc(${triggerBorderPosition().top}px - ${distance})`,
+        right: `${
+          triggerBorderPosition().top + triggerBorderPosition().height / 2
+        }px`,
+        bottom: `calc(${
+          triggerBorderPosition().top + triggerBorderPosition().height
+        }px + ${distance})`,
+        left: `${
+          triggerBorderPosition().top + triggerBorderPosition().height / 2
+        }px`,
       };
-      const getLeft = () => {
-        const obj = {
-          top: `${
-            triggerBorderPosition().left + triggerBorderPosition().width * 0.5
-          }px`,
-          right: `${triggerBorderPosition().right}px`,
-          bottom: `${
-            triggerBorderPosition().left + triggerBorderPosition().width * 0.5
-          }px`,
-          left: `${triggerBorderPosition().left}px`,
-        };
-        console.log("position", position);
-        return obj[position as keyof typeof obj];
+      const leftObj: Record<Position.types, string> = {
+        top: `${
+          triggerBorderPosition().left + triggerBorderPosition().width * 0.5
+        }px`,
+        right: `calc(${triggerBorderPosition().right}px + ${distance})`,
+        bottom: `${
+          triggerBorderPosition().left + triggerBorderPosition().width * 0.5
+        }px`,
+        left: `calc(${triggerBorderPosition().left}px - ${distance})`,
       };
-      const transformObj = {
+      const transformObj: Record<Position.types, string> = {
         top: `translateX(-50%) translateY(-100%)`,
         right: `translateY(-50%)`,
         bottom: `translateX(-50%)`,
         left: `translateX(-100%) translateY(-50%)`,
       };
-      initPosition = {
+      style = {
         "pointer-events": "unset",
-        top: getTop(),
-        left: getLeft(),
-        transform: transformObj[position as keyof typeof transformObj],
+        top: !center ? topObj[position] : "",
+        left: !center ? leftObj[position] : "",
+        transform: !center ? transformObj[position] : "",
       };
-      console.log("initPosition", initPosition);
     } else {
-      initPosition = {
+      style = {
         top: `${
           triggerBorderPosition().top + triggerBorderPosition().width * 0.5
         }px`,
@@ -148,11 +142,11 @@ const AppPupop = (props: AppPupopProps) => {
 					)
 					scale(0.05)
 				`,
-        // opacity: "0",
+        opacity: "0",
         "pointer-events": "none",
       };
     }
-    return initPosition;
+    return style;
   };
 
   return (
@@ -164,7 +158,7 @@ const AppPupop = (props: AppPupopProps) => {
             "z-50 w-[200px] h-[100px] absolute transition-all ease-in-out duration-300",
             {
               "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2":
-                open() && position === "center",
+                open() && center,
             }
           )}
           style={{
