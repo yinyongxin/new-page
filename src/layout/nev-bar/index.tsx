@@ -61,7 +61,6 @@ const NavBar = () => {
             console.log("222", appContext.navBar.position);
           }}
         >
-          {appContext.navBar.position}
           <Home />
         </div>
         <Setting />
