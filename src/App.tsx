@@ -9,12 +9,21 @@ function App() {
 
   return (
     <AppContext.Provider
-      value={{
-        ...appContext,
-        updateAppContext: setAppContext,
-      }}
+      value={{ ...appContext, updateAppContext: setAppContext }}
     >
       <div class={cn(classes.app)}>
+        <div
+          onclick={() => {
+            setAppContext?.({
+              navBar: {
+                position:
+                  appContext.navBar.position === "left" ? "right" : "left",
+              },
+            });
+          }}
+        >
+          {appContext.navBar.position}
+        </div>
         <Layout />
       </div>
     </AppContext.Provider>

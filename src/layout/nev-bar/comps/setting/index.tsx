@@ -1,8 +1,11 @@
 import Settings from "lucide-solid/icons/settings";
 import AppPupop from "../../../../components/app-pupop";
+import { useContext } from "solid-js";
+import { AppContext } from "../../../../app-conetent";
 const Setting = () => {
   console.log("setting");
   let settingRef!: HTMLDivElement;
+  const appContext = useContext(AppContext);
   return (
     <>
       <div
@@ -12,10 +15,9 @@ const Setting = () => {
         <Settings class="animate-[spin_3s_linear_infinite]" />
       </div>
       <AppPupop
-        position="right"
+        position={appContext.navBar.position === "right" ? "left" : "right"}
         center={false}
         trigger={settingRef}
-        active="click"
         distance="1.6rem"
       />
     </>

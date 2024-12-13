@@ -24,23 +24,17 @@ const navBarVariants = cva("absolute p-3 rounded-xl z-100s", {
   },
 });
 
-type NavBarProps = {
-  blur?: boolean;
-} & VariantProps<typeof navBarVariants>;
-
-const NavBar = (props: NavBarProps) => {
-  const {
-    navBar: { position: navBarPosition },
-    blur: navBarBlur,
-  } = useContext(AppContext);
-
-  const { position = navBarPosition, blur = navBarBlur } = props;
+const NavBar = () => {
+  const appContext = useContext(AppContext);
 
   let homeCef!: HTMLDivElement;
-  let settingRef!: HTMLDivElement;
-  const [homeOpen, setHomeOpen] = createSignal(false);
   return (
-    <nav class={cn(navBarVariants({ position }), classes.navBar)}>
+    <nav
+      class={cn(
+        navBarVariants({ position: appContext.navBar.position }),
+        classes.appContext.navBar
+      )}
+    >
       <div
         class={cn("absolute inset-0 rounded-2xl overflow-hidden", {
           "backdrop-blur": blur,
@@ -50,26 +44,30 @@ const NavBar = (props: NavBarProps) => {
       ></div>
       <div
         class={cn("relative flex gap-2 text-white", {
-          "flex-col": position === "left" || position === "right",
+          "flex-col":
+            appContext.navBar.position === "left" ||
+            appContext.navBar.position === "right",
         })}
       >
         <div
           ref={homeCef}
           class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
           onClick={() => {
-            setHomeOpen(!homeOpen());
+            console.log("111", appContext.navBar.position);
+            appContext.updateAppContext?.({
+              navBar: {
+                position:
+                  appContext.navBar.position === "left" ? "right" : "left",
+              },
+            });
+            console.log("222", appContext.navBar.position);
           }}
         >
+          {appContext.navBar.position}
           <Home />
         </div>
         <Setting />
       </div>
-      {/* <AppPupop open={homeOpen()} trigger={homeCef}>
-        <div>home</div>
-      </AppPupop>
-      <AppPupop active="click" trigger={settingRef}>
-        <div>setting</div>
-      </AppPupop> */}
     </nav>
   );
 };

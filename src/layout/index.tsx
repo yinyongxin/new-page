@@ -2,10 +2,12 @@ import NavBar from "./nev-bar";
 
 const Layout = () => {
   return (
-    <main class="h-full w-full overflow-hidden">
+    <>
       <NavBar />
-      <div></div>
-    </main>
+      <main class="h-full w-full overflow-hidden">
+        <div></div>
+      </main>
+    </>
   );
 };
 

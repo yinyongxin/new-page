@@ -1,4 +1,5 @@
 import {
+  batch,
   Component,
   createEffect,
   createSignal,
@@ -33,11 +34,11 @@ const AppPupop = (props: AppPupopProps) => {
     alignment = "default",
     distance = "0.8rem",
     center = true,
-    children,
-    active,
     scrollElement,
     width = "20rem",
     height = "10rem",
+    children,
+    active = "click",
     style,
   } = ohterProps;
 
@@ -65,14 +66,16 @@ const AppPupop = (props: AppPupopProps) => {
     if (trigger) {
       const updateTriggerPosition = () => {
         const triggerBoundingClientRect = trigger.getBoundingClientRect();
-        setTriggerBorderPosition({
-          right:
-            triggerBoundingClientRect.left + triggerBoundingClientRect.width,
-          bottom:
-            triggerBoundingClientRect.top + triggerBoundingClientRect.height,
-          ...triggerBoundingClientRect.toJSON(),
+        batch(() => {
+          setTriggerBorderPosition({
+            right:
+              triggerBoundingClientRect.left + triggerBoundingClientRect.width,
+            bottom:
+              triggerBoundingClientRect.top + triggerBoundingClientRect.height,
+            ...triggerBoundingClientRect.toJSON(),
+          });
+          setCorruntBoundingClientRect(ref.getBoundingClientRect());
         });
-        setCorruntBoundingClientRect(ref.getBoundingClientRect());
       };
 
       updateTriggerPosition();
@@ -254,22 +257,7 @@ const AppPupop = (props: AppPupopProps) => {
           }}
         >
           <div class="bg-black/50 absolute inset-0 rounded-xl z-[51]"></div>
-          <div class="absolute inset-0 z-[52]">
-            <div class="grid grid-cols-2 grid-rows-2 h-full">
-              <div class="bg-red-500/50 flex justify-center items-center">
-                {children}
-              </div>
-              <div class="bg-green-500/50 flex justify-center items-center">
-                {children}
-              </div>
-              <div class="bg-yellow-500/50 flex justify-center items-center">
-                {children}
-              </div>
-              <div class="bg-purple-500/50 flex justify-center items-center">
-                {children}
-              </div>
-            </div>
-          </div>
+          <div class="absolute inset-0 z-[52]">{children}</div>
         </div>
       </Portal>
     </Show>
