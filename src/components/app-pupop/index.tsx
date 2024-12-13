@@ -148,7 +148,7 @@ const AppPupop = (props: AppPupopProps) => {
 					top: {
 						top: `${triggerPosition.top}px`,
 						left: `calc(${triggerPosition.right}px + ${distance})`,
-						transform: `translateY(0%)`,
+						transform: `translateY(0)`,
 					},
 					bottom: {
 						top: `${triggerPosition.top + triggerPosition.height}px`,
@@ -174,7 +174,7 @@ const AppPupop = (props: AppPupopProps) => {
 							triggerPosition.top + triggerPosition.height
 						}px + ${distance})`,
 						left: `${triggerPosition.left}px`,
-						transform: `translateX(0%)`,
+						transform: `translateX(0)`,
 					},
 					default: {
 						top: `calc(${
@@ -188,7 +188,7 @@ const AppPupop = (props: AppPupopProps) => {
 					top: {
 						top: `${triggerPosition.top}px`,
 						left: `calc(${triggerPosition.left}px - ${distance})`,
-						transform: `translateX(-100%) translateY(0%)`,
+						transform: `translateX(-100%)`,
 					},
 					bottom: {
 						top: `${triggerPosition.top + triggerPosition.height}px`,
@@ -232,8 +232,8 @@ const AppPupop = (props: AppPupopProps) => {
 				<div
 					ref={ref}
 					class={cn(
-						"z-50 absolute transition-all ease-in-out duration-300",
-						{}
+						"will-change-transform",
+						"z-50 absolute transition-all ease-in-out duration-300"
 					)}
 					style={{
 						...getStyle(),
@@ -242,7 +242,7 @@ const AppPupop = (props: AppPupopProps) => {
 						...style,
 					}}
 				>
-					<div class="bg-black/50 absolute inset-0 rounded-xl z-[51]"></div>
+					<div class="absolute inset-0 rounded-xl z-[51] bg-white/30 backdrop-blur"></div>
 					<div class="absolute inset-0 z-[52]">{children}</div>
 				</div>
 			</Portal>
