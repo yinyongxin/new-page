@@ -1,4 +1,5 @@
 import {
+  Component,
   createEffect,
   createSignal,
   JSX,
@@ -11,6 +12,8 @@ import {
 import { Portal } from "solid-js/web";
 import { cn } from "../../utils/style";
 export type AppPupopProps = ParentProps<{
+  width?: string;
+  height?: string;
   open?: boolean;
   position?: Position.types;
   alignment?: Position.types | "default";
@@ -18,6 +21,8 @@ export type AppPupopProps = ParentProps<{
   distance?: string;
   active?: "click" | "mouseenter";
   center?: boolean;
+  scrollElement?: Element;
+  style?: JSX.CSSProperties;
 }>;
 const AppPupop = (props: AppPupopProps) => {
   const [local, ohterProps] = splitProps(props, ["open"]);
@@ -30,10 +35,13 @@ const AppPupop = (props: AppPupopProps) => {
     center = true,
     children,
     active,
+    scrollElement,
+    width = "20rem",
+    height = "10rem",
+    style,
   } = ohterProps;
 
   const [open, setOpen] = createSignal(false);
-
   const [triggerBorderPosition, setTriggerBorderPosition] = createSignal({
     top: 0,
     right: 0,
@@ -46,7 +54,7 @@ const AppPupop = (props: AppPupopProps) => {
   });
 
   createEffect(() => {
-    setOpen(local.open || true);
+    setOpen(local.open || false);
   });
 
   let ref!: HTMLDivElement;
@@ -70,8 +78,11 @@ const AppPupop = (props: AppPupopProps) => {
       updateTriggerPosition();
 
       window.addEventListener("resize", updateTriggerPosition);
+      scrollElement?.addEventListener("scroll", updateTriggerPosition);
+
       onCleanup(() => {
         window.removeEventListener("resize", updateTriggerPosition);
+        scrollElement?.removeEventListener("scroll", updateTriggerPosition);
       });
     }
   });
@@ -91,7 +102,7 @@ const AppPupop = (props: AppPupopProps) => {
   });
 
   const getStyle = () => {
-    let style!: JSX.CSSProperties;
+    let resStyle!: JSX.CSSProperties;
     if (open()) {
       const styleObj: Record<
         Position.types,
@@ -193,13 +204,14 @@ const AppPupop = (props: AppPupopProps) => {
           },
         },
       };
-      console.log("alignment", alignment);
-      style = {
+      resStyle = {
         "pointer-events": "unset",
-        ...(center ? {} : styleObj[position][alignment]),
+        ...(center
+          ? {}
+          : styleObj[position][alignment] || styleObj[position].default),
       };
     } else {
-      style = {
+      resStyle = {
         top: `${
           triggerBorderPosition().top + triggerBorderPosition().width * 0.5
         }px`,
@@ -219,7 +231,7 @@ const AppPupop = (props: AppPupopProps) => {
         "pointer-events": "none",
       };
     }
-    return style;
+    return resStyle;
   };
 
   return (
@@ -227,15 +239,15 @@ const AppPupop = (props: AppPupopProps) => {
       <Portal mount={document.getElementById("pupop") as Node}>
         <div
           ref={ref}
-          class={cn(
-            "z-50 w-[200px] h-[100px] absolute transition-all ease-in-out duration-300",
-            {
-              "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2":
-                open() && center,
-            }
-          )}
+          class={cn("z-50 absolute transition-all ease-in-out duration-300", {
+            "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2":
+              open() && center,
+          })}
           style={{
             ...getStyle(),
+            width,
+            height,
+            ...style,
           }}
           onClick={() => {
             setOpen(false);

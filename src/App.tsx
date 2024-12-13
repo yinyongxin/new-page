@@ -1,19 +1,21 @@
-import NavBar from "./layout/nev-bar";
 import classes from "./app.module.css";
 import { cn } from "./utils/style";
 import { AppContext, appContextDefaultValue } from "./app-conetent";
-import AppPupopTest from "./test";
+import Layout from "./layout";
+import { createStore } from "solid-js/store";
 
 function App() {
+  const [appContext, setAppContext] = createStore(appContextDefaultValue);
+
   return (
     <AppContext.Provider
       value={{
-        ...appContextDefaultValue,
+        ...appContext,
+        updateAppContext: setAppContext,
       }}
     >
       <div class={cn(classes.app)}>
-        <NavBar />
-        <AppPupopTest />
+        <Layout />
       </div>
     </AppContext.Provider>
   );

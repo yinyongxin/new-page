@@ -6,6 +6,7 @@ import Home from "lucide-solid/icons/home";
 import Settings from "lucide-solid/icons/settings";
 import { AppContext } from "../../app-conetent";
 import AppPupop from "../../components/app-pupop";
+import Setting from "./comps/setting";
 
 const positionOptions: Record<Position.types, string> = {
   top: "top-4 left-1/2 -translate-x-1/2",
@@ -61,12 +62,7 @@ const NavBar = (props: NavBarProps) => {
         >
           <Home />
         </div>
-        <div
-          ref={settingRef}
-          class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
-        >
-          <Settings class="animate-[spin_3s_linear_infinite]" />
-        </div>
+        <Setting />
       </div>
       {/* <AppPupop open={homeOpen()} trigger={homeCef}>
         <div>home</div>
