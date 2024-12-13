@@ -8,9 +8,7 @@ function App() {
   const [appContext, setAppContext] = createStore(appContextDefaultValue);
 
   return (
-    <AppContext.Provider
-      value={{ ...appContext, updateAppContext: setAppContext }}
-    >
+    <AppContext.Provider value={appContext}>
       <div class={cn(classes.app)}>
         <div
           onclick={() => {

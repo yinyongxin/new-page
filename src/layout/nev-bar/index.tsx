@@ -1,11 +1,9 @@
-import { VariantProps, cva } from "class-variance-authority";
+import { cva } from "class-variance-authority";
 import { cn } from "../../utils/style";
 import classes from "./index.module.css";
-import { createSignal, useContext } from "solid-js";
+import { useContext } from "solid-js";
 import Home from "lucide-solid/icons/home";
-import Settings from "lucide-solid/icons/settings";
 import { AppContext } from "../../app-conetent";
-import AppPupop from "../../components/app-pupop";
 import Setting from "./comps/setting";
 
 const positionOptions: Record<Position.types, string> = {
@@ -32,7 +30,7 @@ const NavBar = () => {
     <nav
       class={cn(
         navBarVariants({ position: appContext.navBar.position }),
-        classes.appContext.navBar
+        classes.navBar
       )}
     >
       <div
