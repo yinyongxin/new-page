@@ -146,7 +146,7 @@ const AppPupopTest = () => {
       </div>
       <AppPupop
         active="click"
-        trigger={topLeftRef}
+        triggerElement={topLeftRef}
         position="top"
         alignment="left"
         center={false}
@@ -156,7 +156,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={topRef}
+        triggerElement={topRef}
         position="top"
         center={false}
         scrollElement={scrollElement}
@@ -165,7 +165,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={topRightRef}
+        triggerElement={topRightRef}
         position="top"
         alignment="right"
         center={false}
@@ -176,7 +176,7 @@ const AppPupopTest = () => {
 
       <AppPupop
         active="click"
-        trigger={rightTopRef}
+        triggerElement={rightTopRef}
         position="right"
         alignment="top"
         center={false}
@@ -187,7 +187,7 @@ const AppPupopTest = () => {
 
       <AppPupop
         active="click"
-        trigger={rightRef}
+        triggerElement={rightRef}
         position="right"
         center={false}
         scrollElement={scrollElement}
@@ -196,7 +196,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={rightBottomRef}
+        triggerElement={rightBottomRef}
         position="right"
         alignment="bottom"
         center={false}
@@ -207,7 +207,7 @@ const AppPupopTest = () => {
 
       <AppPupop
         active="click"
-        trigger={leftTopRef}
+        triggerElement={leftTopRef}
         position="left"
         center={false}
         scrollElement={scrollElement}
@@ -217,7 +217,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={leftRef}
+        triggerElement={leftRef}
         position="left"
         center={false}
         scrollElement={scrollElement}
@@ -227,7 +227,7 @@ const AppPupopTest = () => {
 
       <AppPupop
         active="click"
-        trigger={leftBottomRef}
+        triggerElement={leftBottomRef}
         position="left"
         center={false}
         scrollElement={scrollElement}
@@ -237,7 +237,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={bottomRightRef}
+        triggerElement={bottomRightRef}
         position="bottom"
         alignment="right"
         center={false}
@@ -247,7 +247,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={bottomRef}
+        triggerElement={bottomRef}
         position="bottom"
         center={false}
         scrollElement={scrollElement}
@@ -256,7 +256,7 @@ const AppPupopTest = () => {
       </AppPupop>
       <AppPupop
         active="click"
-        trigger={bottomLeftRef}
+        triggerElement={bottomLeftRef}
         position="bottom"
         alignment="left"
         center={false}

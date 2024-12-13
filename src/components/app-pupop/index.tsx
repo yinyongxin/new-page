@@ -18,7 +18,7 @@ export type AppPupopProps = ParentProps<{
 	open?: boolean;
 	position?: Position.types;
 	alignment?: Position.types | "default";
-	trigger?: Element;
+	triggerElement?: Element;
 	distance?: string;
 	active?: "click" | "mouseenter";
 	center?: boolean;
@@ -29,7 +29,7 @@ const AppPupop = (props: AppPupopProps) => {
 	const merged = mergeProps({ open: false }, props);
 	const [local, ohterProps] = splitProps(merged, ["open", "position"]);
 	const {
-		trigger,
+		triggerElement,
 		alignment = "default",
 		distance = "0.8rem",
 		center = true,
@@ -54,8 +54,8 @@ const AppPupop = (props: AppPupopProps) => {
 	});
 
 	const updateTriggerPosition = () => {
-		if (!trigger) return;
-		const triggerBoundingClientRect = trigger.getBoundingClientRect();
+		if (!triggerElement) return;
+		const triggerBoundingClientRect = triggerElement.getBoundingClientRect();
 		batch(() => {
 			setTriggerBorderPosition({
 				right: triggerBoundingClientRect.left + triggerBoundingClientRect.width,
@@ -80,7 +80,7 @@ const AppPupop = (props: AppPupopProps) => {
 		createSignal<DOMRect>(new DOMRect(0, 0, 0, 0));
 
 	onMount(() => {
-		if (trigger) {
+		if (triggerElement) {
 			updateTriggerPosition();
 
 			window.addEventListener("resize", updateTriggerPosition);
@@ -94,15 +94,15 @@ const AppPupop = (props: AppPupopProps) => {
 	});
 
 	createEffect(() => {
-		if (active && trigger) {
+		if (active && triggerElement) {
 			const handleClick = () => {
 				setOpen(!open());
 			};
 
-			trigger.addEventListener(active, handleClick);
+			triggerElement.addEventListener(active, handleClick);
 
 			onCleanup(() => {
-				trigger.removeEventListener(active, handleClick);
+				triggerElement.removeEventListener(active, handleClick);
 			});
 		}
 	});

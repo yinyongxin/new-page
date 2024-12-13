@@ -17,7 +17,7 @@ const Setting = () => {
 			<AppPupop
 				position={appContext.navBar.position === "right" ? "left" : "right"}
 				center={false}
-				trigger={settingRef}
+				triggerElement={settingRef}
 				distance="1.6rem"
 			>
 				Settings
