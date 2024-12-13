@@ -68,12 +68,12 @@ const NavBar = (props: NavBarProps) => {
           <Settings class="animate-[spin_3s_linear_infinite]" />
         </div>
       </div>
-      <AppPupop open={homeOpen()} trigger={homeCef}>
+      {/* <AppPupop open={homeOpen()} trigger={homeCef}>
         <div>home</div>
       </AppPupop>
       <AppPupop active="click" trigger={settingRef}>
         <div>setting</div>
-      </AppPupop>
+      </AppPupop> */}
     </nav>
   );
 };

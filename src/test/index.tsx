@@ -11,7 +11,9 @@ const AppPupopTest = () => {
 
   let centerRef!: HTMLDivElement;
   let bottomRef!: HTMLDivElement;
+  let leftTopRef!: HTMLDivElement;
   let leftRef!: HTMLDivElement;
+  let leftBottomRef!: HTMLDivElement;
   return (
     <div class="flex justify-center items-center h-full overflow-hidden">
       <div class="h-3/4 w-3/4 grid grid-cols-3 gap-4 place-items-center">
@@ -42,15 +44,6 @@ const AppPupopTest = () => {
 
         <div>
           <div
-            ref={rightRef}
-            class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
-          >
-            right
-          </div>
-        </div>
-
-        <div>
-          <div
             ref={rightTopRef}
             class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
           >
@@ -60,10 +53,44 @@ const AppPupopTest = () => {
 
         <div>
           <div
+            ref={rightRef}
+            class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
+          >
+            right
+          </div>
+        </div>
+
+        <div>
+          <div
             ref={rightBottomRef}
             class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
           >
             rightBottom
+          </div>
+        </div>
+
+        <div>
+          <div
+            ref={leftTopRef}
+            class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
+          >
+            leftTop
+          </div>
+        </div>
+        <div>
+          <div
+            ref={leftRef}
+            class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
+          >
+            left
+          </div>
+        </div>
+        <div>
+          <div
+            ref={leftBottomRef}
+            class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
+          >
+            leftBottom
           </div>
         </div>
 
@@ -81,14 +108,6 @@ const AppPupopTest = () => {
             class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
           >
             bottom
-          </div>
-        </div>
-        <div class="col-spin-1">
-          <div
-            ref={leftRef}
-            class=" w-14 h-14 rounded-md bg-cyan-100 flex justify-center items-center"
-          >
-            left
           </div>
         </div>
       </div>
@@ -142,6 +161,29 @@ const AppPupopTest = () => {
         rightBottom
       </AppPupop>
 
+      <AppPupop
+        active="click"
+        trigger={leftTopRef}
+        position="left"
+        center={false}
+        alignment="top"
+      >
+        leftTop
+      </AppPupop>
+      <AppPupop active="click" trigger={leftRef} position="left" center={false}>
+        left
+      </AppPupop>
+
+      <AppPupop
+        active="click"
+        trigger={leftBottomRef}
+        position="left"
+        center={false}
+        alignment="bottom"
+      >
+        leftBottom
+      </AppPupop>
+
       <AppPupop active="click" trigger={centerRef}>
         center
       </AppPupop>
@@ -152,15 +194,6 @@ const AppPupopTest = () => {
         center={false}
       >
         bottom
-      </AppPupop>
-      <AppPupop
-        active="click"
-        trigger={leftRef}
-        position="right"
-        center={false}
-        alignment="top"
-      >
-        left
       </AppPupop>
     </div>
   );

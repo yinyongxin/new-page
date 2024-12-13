@@ -173,18 +173,16 @@ const AppPupop = (props: AppPupopProps) => {
         },
         left: {
           top: {
-            top: `${
-              triggerBorderPosition().top + triggerBorderPosition().height / 2
-            }px`,
+            top: `${triggerBorderPosition().top}px`,
             left: `calc(${triggerBorderPosition().left}px - ${distance})`,
-            transform: `translateX(-100%) translateY(-50%)`,
+            transform: `translateX(-100%) translateY(0%)`,
           },
-          left: {
+          bottom: {
             top: `${
-              triggerBorderPosition().top + triggerBorderPosition().height / 2
+              triggerBorderPosition().top + triggerBorderPosition().height
             }px`,
             left: `calc(${triggerBorderPosition().left}px - ${distance})`,
-            transform: `translateX(-100%) translateY(-50%)`,
+            transform: `translateX(-100%) translateY(-100%)`,
           },
           default: {
             top: `${
