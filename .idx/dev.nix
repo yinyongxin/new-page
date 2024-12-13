@@ -13,6 +13,8 @@
     # 在 https://open-vsx.org/ 上查找所需的扩展，并使用 "publisher.id"
     extensions = [
       # "vscodevim.vim"
+      "bradlc.vscode-tailwindcss"
+      "esbenp.prettier-vscode"
     ];
     workspace = {
       # 当首次使用此 `dev.nix` 文件创建工作区时执行的操作
