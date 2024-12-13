@@ -5,7 +5,7 @@ import { AppContext } from "../../../../app-conetent";
 const Setting = () => {
   console.log("setting");
   let settingRef!: HTMLDivElement;
-  const appContext = useContext(AppContext);
+  const { appContext } = useContext(AppContext);
   return (
     <>
       <div

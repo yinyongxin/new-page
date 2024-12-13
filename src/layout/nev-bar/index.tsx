@@ -23,7 +23,7 @@ const navBarVariants = cva("absolute p-3 rounded-xl z-100s", {
 });
 
 const NavBar = () => {
-  const appContext = useContext(AppContext);
+  const { appContext, updateAppContext } = useContext(AppContext);
 
   let homeCef!: HTMLDivElement;
   return (
@@ -52,7 +52,7 @@ const NavBar = () => {
           class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
           onClick={() => {
             console.log("111", appContext.navBar.position);
-            appContext.updateAppContext?.({
+            updateAppContext?.({
               navBar: {
                 position:
                   appContext.navBar.position === "left" ? "right" : "left",

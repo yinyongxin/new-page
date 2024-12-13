@@ -5,10 +5,14 @@ import Layout from "./layout";
 import { createStore } from "solid-js/store";
 
 function App() {
-  const [appContext, setAppContext] = createStore(appContextDefaultValue);
+  const [appContext, setAppContext] = createStore(
+    appContextDefaultValue.appContext
+  );
 
   return (
-    <AppContext.Provider value={appContext}>
+    <AppContext.Provider
+      value={{ appContext: appContext, updateAppContext: setAppContext }}
+    >
       <div class={cn(classes.app)}>
         <div
           onclick={() => {
