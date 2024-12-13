@@ -125,7 +125,7 @@ const AppPupop = (props: AppPupopProps) => {
         left: `translateX(-100%) translateY(-50%)`,
       };
       initPosition = {
-        "pointer-events": "none",
+        "pointer-events": "unset",
         top: getTop(),
         left: getLeft(),
         transform: transformObj[position as keyof typeof transformObj],
@@ -149,7 +149,7 @@ const AppPupop = (props: AppPupopProps) => {
 					scale(0.05)
 				`,
         // opacity: "0",
-        "pointer-events": "unset",
+        "pointer-events": "none",
       };
     }
     return initPosition;
@@ -161,7 +161,7 @@ const AppPupop = (props: AppPupopProps) => {
         <div
           ref={ref}
           class={cn(
-            "z-50 w-[600px] h-[400px] absolute transition-all ease-in-out duration-300",
+            "z-50 w-[200px] h-[100px] absolute transition-all ease-in-out duration-300",
             {
               "left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2":
                 open() && position === "center",
