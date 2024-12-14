@@ -8,9 +8,8 @@ export type BoxProps = ParentProps<
 			off?: boolean;
 			type?: "light" | "dark";
 		};
-		style?: JSX.CSSProperties;
 		ref?: HTMLElement;
-	} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class">
+	} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style">
 >;
 const AppBox = (props: BoxProps) => {
 	const { appContext } = useContext(AppContext);

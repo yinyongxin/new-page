@@ -23,15 +23,12 @@ const navBarVariants = cva("absolute p-3 rounded-xl z-100s", {
 });
 
 const NavBar = () => {
-	const { appContext, updateAppContext } = useContext(AppContext);
+	const { navBar, setNavBar, appContext } = useContext(AppContext);
 
 	let homeCef!: HTMLDivElement;
 	return (
 		<nav
-			class={cn(
-				navBarVariants({ position: appContext.navBar.position }),
-				classes.navBar
-			)}
+			class={cn(navBarVariants({ position: navBar.position }), classes.navBar)}
 		>
 			<div
 				class={cn("absolute inset-0 rounded-2xl overflow-hidden", {
@@ -41,22 +38,17 @@ const NavBar = () => {
 			></div>
 			<div
 				class={cn("relative flex gap-2 text-white", {
-					"flex-col":
-						appContext.navBar.position === "left" ||
-						appContext.navBar.position === "right",
+					"flex-col": navBar.position === "left" || navBar.position === "right",
 				})}
 			>
 				<div
 					ref={homeCef}
 					class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
 					onClick={() => {
-						updateAppContext?.({
-							navBar: {
-								position:
-									appContext.navBar.position === "left" ? "right" : "left",
-							},
+						setNavBar?.({
+							position: navBar.position === "left" ? "right" : "left",
 						});
-						console.log("222", appContext.navBar.position);
+						console.log("222", navBar.position);
 					}}
 				>
 					<Home />

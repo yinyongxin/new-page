@@ -15,7 +15,7 @@ export type DrawerProps = {
 	position?: "pageTop" | "pageRight" | "pageBottom" | "pageLeft";
 	duration?: number;
 	alignment?: string;
-} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class">;
+} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style">;
 const Drawer: ParentComponent<DrawerProps> = (props) => {
 	const [open, setOpen] = createSignal(false);
 
@@ -78,6 +78,7 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
 							"absolute shadow-lg",
 							positionObj[props.position || "pageRight"],
 						])}
+						style={props.style}
 					>
 						{props.children}
 					</AppBox>

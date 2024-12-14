@@ -4,7 +4,7 @@ import { createSignal, useContext } from "solid-js";
 import { AppContext } from "../../../../app-conetent";
 import Drawer from "../../../../components/drawer";
 const Setting = () => {
-	const { appContext } = useContext(AppContext);
+	const { navBar } = useContext(AppContext);
 	let settingRef!: HTMLDivElement;
 	const [open, setOpen] = createSignal(false);
 	return (
@@ -22,7 +22,7 @@ const Setting = () => {
 				Drawer
 			</Drawer>
 			<AppPupop
-				position={appContext.navBar.position === "right" ? "left" : "right"}
+				position={navBar.position === "right" ? "left" : "right"}
 				center={false}
 				// triggerElement={settingRef}
 				distance="1.6rem"

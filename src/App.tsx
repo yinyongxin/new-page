@@ -8,25 +8,13 @@ function App() {
 	const [appContext, setAppContext] = createStore(
 		appContextDefaultValue.appContext
 	);
-	const [blurOptions, setBlurOptions] = createStore({});
+	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
 
 	return (
 		<AppContext.Provider
-			value={{ appContext: appContext, updateAppContext: setAppContext }}
+			value={{ appContext, setAppContext, navBar, setNavBar }}
 		>
 			<div class={cn(classes.app)}>
-				<div
-					onclick={() => {
-						setAppContext?.({
-							navBar: {
-								position:
-									appContext.navBar.position === "left" ? "right" : "left",
-							},
-						});
-					}}
-				>
-					{appContext.navBar.position}
-				</div>
 				<Layout />
 			</div>
 		</AppContext.Provider>

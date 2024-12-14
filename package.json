@@ -11,6 +11,7 @@
   "dependencies": {
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
+    "gridstack": "^11.1.2",
     "lucide-solid": "^0.468.0",
     "solid-js": "^1.9.3",
     "solid-transition-group": "^0.2.3",
