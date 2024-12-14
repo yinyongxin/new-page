@@ -1,6 +1,15 @@
-import { defineConfig } from 'vite'
-import solid from 'vite-plugin-solid'
+import { defineConfig } from "vite";
+import solid from "vite-plugin-solid";
 
 export default defineConfig({
-  plugins: [solid()],
-})
+	plugins: [solid()],
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['solid-js', 'gridstack'],
+        },
+      },
+    },
+  },
+});
