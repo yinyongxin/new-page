@@ -1,6 +1,5 @@
 @import url("./global.css");
+@import "./backgroud.css";
 .grid-stack-item-content {
-  @apply bg-white/30 backdrop-blur rounded-xl;
+	@apply bg-white/30 backdrop-blur rounded-xl;
 }
-
-

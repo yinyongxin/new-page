@@ -27,7 +27,6 @@ const Layout = () => {
 				<div class="h-full w-full overflow-auto">
 					<div ref={gridStack}></div>
 				</div>
-       
 			</main>
 		</>
 	);
