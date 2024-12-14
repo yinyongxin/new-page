@@ -50,7 +50,7 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
 							{ opacity: 1 },
 						],
 						{
-							duration: props.duration || 300,
+							duration: props.duration || 200,
 						}
 					);
 					a.finished.then(done);
@@ -65,7 +65,7 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
 							},
 						],
 						{
-							duration: props.duration || 300,
+							duration: props.duration || 200,
 						}
 					);
 					a.finished.then(done);
