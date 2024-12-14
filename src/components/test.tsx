@@ -1,4 +1,4 @@
-import { ParentProps, Show, splitProps } from "solid-js";
+import { ParentProps, splitProps } from "solid-js";
 
 export type TestProps = ParentProps<{
 	open: boolean;

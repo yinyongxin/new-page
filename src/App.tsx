@@ -12,7 +12,7 @@ function App() {
 		appContextDefaultValue.appContext
 	);
 	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
-	const [background, setBackground] = createStore({
+	const [background] = createStore({
 		type: "css", //'image'
 		className: BackgroundClassName.BlueLine,
 		backdropBlur: {

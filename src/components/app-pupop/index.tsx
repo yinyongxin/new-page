@@ -86,7 +86,7 @@ const AppPupop = (props: AppPupopProps) => {
 	});
 
 	let ref!: HTMLDivElement;
-	const [corruntBoundingClientRect, setCorruntBoundingClientRect] =
+	const [_corruntBoundingClientRect, setCorruntBoundingClientRect] =
 		createSignal<DOMRect>(new DOMRect(0, 0, 0, 0));
 
 	onMount(() => {
