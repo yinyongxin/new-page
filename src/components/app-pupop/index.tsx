@@ -8,7 +8,6 @@ import {
 	ParentProps,
 	Show,
 	splitProps,
-	mergeProps,
 } from "solid-js";
 import { Portal } from "solid-js/web";
 import { cn } from "../../utils/style";
@@ -29,6 +28,7 @@ export type AppPupopProps = ParentProps<
 		width?: string;
 		height?: string;
 		open?: boolean;
+		defaultOpen?: boolean;
 		triggerElement?: HTMLElement;
 		active?: "click" | "mouseenter";
 		scrollElement?: HTMLElement;
@@ -36,8 +36,7 @@ export type AppPupopProps = ParentProps<
 	} & (IsCenter | NotCenter)
 >;
 const AppPupop = (props: AppPupopProps) => {
-	const merged = mergeProps({ open: false }, props);
-	const [local, ohterProps] = splitProps(merged, ["open", "position"]);
+	const [local, ohterProps] = splitProps(props, ["open", "position"]);
 	const {
 		triggerElement,
 		scrollElement,
@@ -49,9 +48,10 @@ const AppPupop = (props: AppPupopProps) => {
 		children,
 		active = "click",
 		style,
+		defaultOpen = false,
 	} = ohterProps;
 	const [position, setPosition] = createSignal<Position.types>("top");
-	const [open, setOpen] = createSignal(false);
+	const [open, setOpen] = createSignal(defaultOpen);
 	const [triggerBorderPosition, setTriggerBorderPosition] = createSignal({
 		top: 0,
 		right: 0,
@@ -79,7 +79,7 @@ const AppPupop = (props: AppPupopProps) => {
 
 	createEffect(() => {
 		batch(() => {
-			setOpen(local.open);
+			setOpen(local.open || defaultOpen);
 			setPosition(local.position || "top");
 		});
 		updateTriggerPosition();

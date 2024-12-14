@@ -5,31 +5,32 @@ import Layout from "./layout";
 import { createStore } from "solid-js/store";
 
 function App() {
-  const [appContext, setAppContext] = createStore(
-    appContextDefaultValue.appContext
-  );
+	const [appContext, setAppContext] = createStore(
+		appContextDefaultValue.appContext
+	);
+	const [blurOptions, setBlurOptions] = createStore({});
 
-  return (
-    <AppContext.Provider
-      value={{ appContext: appContext, updateAppContext: setAppContext }}
-    >
-      <div class={cn(classes.app)}>
-        <div
-          onclick={() => {
-            setAppContext?.({
-              navBar: {
-                position:
-                  appContext.navBar.position === "left" ? "right" : "left",
-              },
-            });
-          }}
-        >
-          {appContext.navBar.position}
-        </div>
-        <Layout />
-      </div>
-    </AppContext.Provider>
-  );
+	return (
+		<AppContext.Provider
+			value={{ appContext: appContext, updateAppContext: setAppContext }}
+		>
+			<div class={cn(classes.app)}>
+				<div
+					onclick={() => {
+						setAppContext?.({
+							navBar: {
+								position:
+									appContext.navBar.position === "left" ? "right" : "left",
+							},
+						});
+					}}
+				>
+					{appContext.navBar.position}
+				</div>
+				<Layout />
+			</div>
+		</AppContext.Provider>
+	);
 }
 
 export default App;
