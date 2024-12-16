@@ -4,45 +4,45 @@ import { AppContext, appContextDefaultValue } from "./app-conetent";
 import Layout from "./layout";
 import { createStore } from "solid-js/store";
 enum BackgroundClassName {
-	Circle = "background-circle",
-	BlueLine = "background-blue-line",
+  Circle = "background-circle",
+  BlueLine = "background-blue-line",
 }
 function App() {
-	const [appContext, setAppContext] = createStore(
-		appContextDefaultValue.appContext
-	);
-	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
-	const [background] = createStore({
-		type: "css", //'image'
-		className: BackgroundClassName.BlueLine,
-		backdropBlur: {
-			off: true,
-			size: "default",
-		},
-	});
+  const [appContext, setAppContext] = createStore(
+    appContextDefaultValue.appContext
+  );
+  const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
+  const [background] = createStore({
+    type: "css", //'image'
+    className: BackgroundClassName.BlueLine,
+    backdropBlur: {
+      off: true,
+      size: "default",
+    },
+  });
 
-	return (
-		<AppContext.Provider
-			value={{ appContext, setAppContext, navBar, setNavBar }}
-		>
-			<div
-				class={cn("absolute inset-0", {
-					[background.className]: background.type === "css",
-				})}
-			>
-				<div
-					class={cn("h-full w-full", {
-						"backdrop-blur bg-white/30":
-							background.backdropBlur.off &&
-							background.backdropBlur.size === "default",
-					})}
-				/>
-			</div>
-			<div class={cn(classes.app)}>
-				<Layout />
-			</div>
-		</AppContext.Provider>
-	);
+  return (
+    <AppContext.Provider
+      value={{ appContext, setAppContext, navBar, setNavBar }}
+    >
+      <div
+        class={cn("absolute inset-0", {
+          [background.className]: background.type === "css",
+        })}
+      >
+        <div
+          class={cn("h-full w-full", {
+            "backdrop-blur bg-white/30":
+              background.backdropBlur.off &&
+              background.backdropBlur.size === "default",
+          })}
+        />
+      </div>
+      <div class={cn(classes.app, "backdrop-blur bg-white/30")}>
+        <Layout />
+      </div>
+    </AppContext.Provider>
+  );
 }
 
 export default App;
