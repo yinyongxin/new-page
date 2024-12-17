@@ -1,7 +1,6 @@
 import classes from "./app.module.css";
 import { cn } from "./utils/style";
 import { AppContext, appContextDefaultValue } from "./app-conetent";
-import Layout from "./layout";
 import { createStore } from "solid-js/store";
 import FullScreen from "./components/full-screen";
 import NavBar from "./components/nav-bar";
@@ -34,15 +33,15 @@ function App() {
       >
         <div
           class={cn("h-full w-full", {
-            "backdrop-blur bg-white/30":
+            "backdrop-blur-sm bg-white/30":
               background.backdropBlur.off &&
               background.backdropBlur.size === "default",
           })}
         />
       </div>
       <NavBar />
-      <div class={cn(classes.app, "backdrop-blur bg-white/30")}></div>
-      <FullScreen open>FullScreen</FullScreen>
+      <div class={cn(classes.app)}></div>
+      <FullScreen>FullScreen</FullScreen>
     </AppContext.Provider>
   );
 }
