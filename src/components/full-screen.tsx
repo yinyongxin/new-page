@@ -39,12 +39,19 @@ const FullScreen: ParentComponent<FullScreenProps> = (props) => {
 						[
 							{
 								opacity: 0,
+								transform: "scale(1)",
+							},
+							{
+								opacity: 0,
 								transform: "scale(1.2)",
 							},
-							{ opacity: 1, transform: "scale(1)" },
+							{
+								opacity: 1,
+								transform: "scale(1)",
+							},
 						],
 						{
-							duration: props.duration || 200,
+							duration: props.duration || 300,
 						}
 					);
 					a.finished.then(done);
@@ -57,9 +64,13 @@ const FullScreen: ParentComponent<FullScreenProps> = (props) => {
 								opacity: 0,
 								transform: "scale(1.2)",
 							},
+							{
+								opacity: 0,
+								transform: "scale(1)",
+							},
 						],
 						{
-							duration: props.duration || 200,
+							duration: props.duration || 300,
 						}
 					);
 					a.finished.then(done);
@@ -68,10 +79,15 @@ const FullScreen: ParentComponent<FullScreenProps> = (props) => {
 				<Show when={open()}>
 					<AppBox
 						rounded="none"
-						class={cn([props.class, "absolute inset-0 z-[99]"])}
+						class={cn([props.class, "absolute inset-0 overflow-hidden z-[99]"])}
 						style={props.style}
 					>
-						<div class={cn("h-full", paddingObj[navBar.position])}>
+						<div
+							class={cn(
+								"h-full w-full overflow-hidden",
+								paddingObj[navBar.position]
+							)}
+						>
 							{props.children}
 						</div>
 					</AppBox>

@@ -238,16 +238,17 @@ const AppPupop = (props: AppPupopProps) => {
 					ref={ref}
 					class={cn(
 						"will-change-transform",
-						"z-50 absolute transition-all ease-in-out duration-300"
+						"absolute transition-all ease-in-out duration-300"
 					)}
 					style={{
 						...styleMemo(),
 						width,
 						height,
+						"max-width": "calc(100vw - 2rem)",
 						...style,
 					}}
 				>
-					<div class="absolute inset-0 rounded-xl z-[51] bg-white/30 backdrop-blur"></div>
+					<div class="absolute inset-0 shadow rounded-xl z-[51] bg-white/30 backdrop-blur"></div>
 					<div class="absolute inset-0 z-[52]">{children}</div>
 				</div>
 			</Portal>

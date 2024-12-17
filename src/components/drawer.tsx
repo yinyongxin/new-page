@@ -72,7 +72,7 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
           <AppBox
             class={cn([
               ohterProps.class,
-              "absolute shadow-lg",
+              "absolute shadow",
               positionObj[ohterProps.position || "pageRight"],
             ])}
             style={ohterProps.style}
