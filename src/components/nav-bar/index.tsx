@@ -1,10 +1,11 @@
 import { cva } from "class-variance-authority";
 import { cn } from "../../utils/style";
 import classes from "./index.module.css";
-import { useContext } from "solid-js";
+import { ParentComponent, useContext } from "solid-js";
 import { AppContext } from "../../app-conetent";
 import Setting from "./comps/setting";
 import AddWebsite from "./comps/add-website";
+import Item from "./item";
 
 const positionOptions: Record<Position.types, string> = {
   top: "top-4 left-1/2 -translate-x-1/2",
@@ -22,7 +23,7 @@ const navBarVariants = cva("absolute p-3 rounded-xl z-100s", {
   },
 });
 
-const NavBar = () => {
+const NavBar:ParentComponent = (props) => {
   const { navBar, appContext } = useContext(AppContext);
 
   return (
@@ -40,8 +41,8 @@ const NavBar = () => {
           "flex-col": navBar.position === "left" || navBar.position === "right",
         })}
       >
-        <Setting />
-        <AddWebsite />
+        {props.children}
+       
       </div>
     </nav>
   );

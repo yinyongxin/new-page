@@ -210,20 +210,7 @@ const AppPupop = (props: AppPupopProps) => {
 	});
 
 	onMount(() => {
-		if (triggerElement) {
-			updateTriggerPosition();
-
-			window.addEventListener("resize", updateTriggerPosition);
-			scrollElement?.addEventListener("scroll", updateTriggerPosition);
-
-			onCleanup(() => {
-				window.removeEventListener("resize", updateTriggerPosition);
-				scrollElement?.removeEventListener("scroll", updateTriggerPosition);
-			});
-		}
-	});
-
-	createEffect(() => {
+		updateTriggerPosition();
 		if (active && triggerElement) {
 			const handleClick = () => {
 				setOpen(!open());
@@ -235,6 +222,13 @@ const AppPupop = (props: AppPupopProps) => {
 				triggerElement.removeEventListener(active, handleClick);
 			});
 		}
+		window.addEventListener("resize", updateTriggerPosition);
+		scrollElement?.addEventListener("scroll", updateTriggerPosition);
+
+		onCleanup(() => {
+			window.removeEventListener("resize", updateTriggerPosition);
+			scrollElement?.removeEventListener("scroll", updateTriggerPosition);
+		});
 	});
 
 	return (
