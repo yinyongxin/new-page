@@ -4,7 +4,7 @@ import { AppContext, appContextDefaultValue } from "./app-conetent";
 import Layout from "./layout";
 import { createStore } from "solid-js/store";
 import FullScreen from "./components/full-screen";
-import NavBar from "./components/nev-bar";
+import NavBar from "./components/nav-bar";
 enum BackgroundClassName {
   Circle = "background-circle",
   BlueLine = "background-blue-line",

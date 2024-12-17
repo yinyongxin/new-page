@@ -1,5 +1,5 @@
 import { onMount } from "solid-js";
-import NavBar from "../components/nev-bar";
+import NavBar from "../components/nav-bar";
 import { GridStack } from "gridstack";
 import FullScreen from "../components/full-screen";
 

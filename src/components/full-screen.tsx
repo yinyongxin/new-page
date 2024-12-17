@@ -4,11 +4,20 @@ import {
   JSX,
   ParentComponent,
   Show,
+  useContext,
 } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Transition } from "solid-transition-group";
 import { cn } from "../utils/style";
 import AppBox from "./app-box";
+import { AppContext } from "../app-conetent";
+
+const paddingObj: Record<Position.types, string> = {
+  top: "pt-[6.5rem] pb-4 px-4",
+  right: "pr-[6.5rem] pl-4 py-4",
+  bottom: "pb-[6.5rem] pt-4 px-4",
+  left: "pl-[6.5rem] pr-4 py-4",
+};
 
 export type FullScreenProps = {
   open?: boolean;
@@ -16,6 +25,7 @@ export type FullScreenProps = {
 } & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style">;
 const FullScreen: ParentComponent<FullScreenProps> = (props) => {
   const [open, setOpen] = createSignal(false);
+  const { navBar } = useContext(AppContext);
 
   createEffect(() => {
     setOpen(props.open || false);
@@ -55,10 +65,14 @@ const FullScreen: ParentComponent<FullScreenProps> = (props) => {
       >
         <Show when={open()}>
           <AppBox
-            class={cn([props.class, "absolute inset-0 z-[50]"])}
+            class={cn([props.class, "absolute inset-0 z-[99]"])}
             style={props.style}
           >
-            {props.children}
+            <div
+              class={cn("h-full overflow-hidden", paddingObj[navBar.position])}
+            >
+              {props.children}
+            </div>
           </AppBox>
         </Show>
       </Transition>
