@@ -3,6 +3,8 @@ import { cn } from "./utils/style";
 import { AppContext, appContextDefaultValue } from "./app-conetent";
 import Layout from "./layout";
 import { createStore } from "solid-js/store";
+import FullScreen from "./components/full-screen";
+import NavBar from "./components/nev-bar";
 enum BackgroundClassName {
   Circle = "background-circle",
   BlueLine = "background-blue-line",
@@ -38,9 +40,9 @@ function App() {
           })}
         />
       </div>
-      <div class={cn(classes.app, "backdrop-blur bg-white/30")}>
-        <Layout />
-      </div>
+      <NavBar />
+      <div class={cn(classes.app, "backdrop-blur bg-white/30")}></div>
+      <FullScreen open>FullScreen</FullScreen>
     </AppContext.Provider>
   );
 }

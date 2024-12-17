@@ -9,11 +9,12 @@ export type BoxProps = ParentProps<
 			type?: "light" | "dark";
 		};
 		ref?: HTMLElement;
+		rounded?: 'default' | 'sm'| '2xl'
 	} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style">
 >;
 const AppBox = (props: BoxProps) => {
 	const { appContext } = useContext(AppContext);
-	const { children, blur, style } = props;
+	const { children, blur, style, rounded  } = props;
 	const { off = appContext.blur, type = "light" } = { ...blur };
 	return (
 		<div
@@ -24,7 +25,10 @@ const AppBox = (props: BoxProps) => {
 					"backdrop-blur": off,
 					"bg-white/30": type === "light",
 					"bg-black/30": type === "dark",
-					"rounded-xl": true,
+					"rounded-none": rounded === undefined,
+					"rounded-sm": rounded === 'sm',
+					"rounded-xl": rounded === 'default',
+					"rounded-2xl": rounded === '2xl'
 				},
 			])}
 		>

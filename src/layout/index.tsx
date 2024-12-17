@@ -1,35 +1,35 @@
 import { onMount } from "solid-js";
-import NavBar from "./nev-bar";
+import NavBar from "../components/nev-bar";
 import { GridStack } from "gridstack";
+import FullScreen from "../components/full-screen";
 
 const Layout = () => {
-	onMount(() => {
-		var grid = GridStack.init(
-			{
-				float: true,
-			},
-			gridStack
-		);
-		const serializedData = [
-			{ x: 0, y: 0, w: 2, h: 2, content: "item 1" },
-			{ x: 2, y: 3, w: 3, content: "item 2" },
-			{ x: 1, y: 3, content: "item 3" },
-		];
+  let gridStack!: HTMLDivElement;
+  onMount(() => {
+    var grid = GridStack.init(
+      {
+        float: true,
+      },
+      gridStack
+    );
+    const serializedData = [
+      { x: 0, y: 0, w: 1, h: 1, content: "item 1" },
+      { x: 1, y: 0, w: 1, content: "item 2" },
+      { x: 2, y: 0, content: "item 3" },
+    ];
 
-		grid.load(serializedData);
-	});
+    grid.load(serializedData);
+  });
 
-	let gridStack!: HTMLDivElement;
-	return (
-		<>
-			<NavBar />
-			<main class="h-full w-full z-[99] p-28">
-				<div class="h-full w-full overflow-auto">
-					<div ref={gridStack}></div>
-				</div>
-			</main>
-		</>
-	);
+  return (
+    <>
+      <main class="h-full w-full p-28">
+        <div class="h-full w-full overflow-auto">
+          <div ref={gridStack}></div>
+        </div>
+      </main>
+    </>
+  );
 };
 
 export default Layout;

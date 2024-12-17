@@ -1,0 +1,4 @@
+.navBar {
+  position: fixed;
+  z-index: 200;
+}

@@ -1,4 +1,4 @@
-import AppPupop from "../../../../components/app-pupop";
+import AppPupop from "../../../app-pupop";
 import CirclePlus from "lucide-solid/icons/circle-plus";
 
 const AddWebsite = () => {
@@ -18,7 +18,6 @@ const AddWebsite = () => {
         center
         triggerElement={ref}
         active="click"
-        defaultOpen
       >
         <div class="p-4">
           <div class="relative rounded-lg w-full overflow-hidden  before:absolute before:w-12 before:h-12 before:content[''] before:right-0 before:bg-violet-500 before:rounded-full before:blur-lg  after:absolute after:-z-10 after:w-20 after:h-20 after:content['']  after:bg-rose-300 after:right-12 after:top-3 after:rounded-full after:blur-lg">
