@@ -37,7 +37,7 @@ export type AppBoxProps = ParentProps<
   {
     blur?: Partial<AppContextType["appContext"]["blur"]>;
     type?: "light" | "dark";
-    ref?: HTMLElement;
+    ref?: HTMLDivElement;
     rounded?: "none" | "default" | "sm" | "2xl";
   } & VariantProps<typeof appBoxVariants> &
     Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style"> &
@@ -49,14 +49,15 @@ const AppBox = (props: AppBoxProps) => {
   const { flag = appContext.blur.flag } = { ...blur };
   return (
     <div
+      ref={props.ref}
       style={style}
       onClick={props.onClick}
       class={cn([
         props.class,
         appBoxVariants({ rounded, shadow }),
         {
-          "backdrop-blur": flag && appContext.blur.size === "default",
           "backdrop-blur-sm": flag && appContext.blur.size === "sm",
+          "backdrop-blur": flag && appContext.blur.size === "default",
           "backdrop-blur-md": flag && appContext.blur.size === "md",
           "bg-white/20": type === "light",
           "bg-black/20": type === "dark",
