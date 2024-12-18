@@ -12,31 +12,31 @@ import Item from "./components/nav-bar/item";
 import { createSignal } from "solid-js";
 
 function App() {
-	const [appContext, setAppContext] = createStore(
-		appContextDefaultValue.appContext
-	);
-	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
-	const [background] = createStore(appContextDefaultValue.background);
-	const [open, setOpen] = createSignal(false);
-	return (
-		<AppContext.Provider
-			value={{ appContext, setAppContext, navBar, setNavBar, background }}
-		>
-			<Background />
-			<NavBar>
-				<Setting />
-				<AddWebsite />
-				<Item
-					onClick={() => {
-						setOpen(!open());
-					}}
-				>
-					<LayoutGrid />
-				</Item>
-			</NavBar>
-			<div class={cn(classes.app)}></div>
-			<FullScreen open={open()}>
-				<div class="grid grid-cols-8 grid-rows-8 px-20">
+  const [appContext, setAppContext] = createStore(
+    appContextDefaultValue.appContext
+  );
+  const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
+  const [background] = createStore(appContextDefaultValue.background);
+  const [open, setOpen] = createSignal(false);
+  return (
+    <AppContext.Provider
+      value={{ appContext, setAppContext, navBar, setNavBar, background }}
+    >
+      <Background />
+      <NavBar>
+        <Setting />
+        <AddWebsite />
+        <Item
+          onClick={() => {
+            setOpen(!open());
+          }}
+        >
+          <LayoutGrid />
+        </Item>
+      </NavBar>
+      <div class={cn(classes.app)}></div>
+      <FullScreen open={open()}>
+        <div class="grid grid-cols-8 grid-rows-8 px-20">
           <div class="aspect-square">1</div>
           <div class="aspect-square">2</div>
           <div class="aspect-square">3</div>
@@ -52,9 +52,9 @@ function App() {
           <div class="aspect-square">13</div>
           <div class="aspect-square">14</div>
         </div>
-			</FullScreen>
-		</AppContext.Provider>
-	);
+      </FullScreen>
+    </AppContext.Provider>
+  );
 }
 
 export default App;
