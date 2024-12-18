@@ -1,16 +1,16 @@
 @layer components {
   .neumorphism-sm {
     background: #e0e0e0;
-    box-shadow: 3px 3px 6px #bebebe, -3px -3px 6px #ffffff;
+    box-shadow: 1px 1px 6px #bebebe, -1px -1px 6px #ffffff;
   }
 
   .neumorphism {
     background: #e0e0e0;
-    box-shadow: 6px 6px 12px #bebebe, -6px -6px 12px #ffffff;
+    box-shadow: 3px 3px 12px #bebebe, -3px -3px 12px #ffffff;
   }
 
   .neumorphism-md {
     background: #e0e0e0;
-    box-shadow: 12px 12px 24px #bebebe, -12px -12px 24px #ffffff;
+    box-shadow: 6px 6px 24px #bebebe, -6px -6px 24px #ffffff;
   }
 }
