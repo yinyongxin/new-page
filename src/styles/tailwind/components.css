@@ -1,0 +1,6 @@
+@layer components {
+  .neumorphism {
+    background: #e0e0e0 !important;
+    box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff !important;
+  }
+}

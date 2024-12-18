@@ -9,7 +9,7 @@ export default {
       animation: {
         'spin-slow': 'spin 3s linear infinite',
       }
-    }
+    },
   },
   plugins: [],
 }

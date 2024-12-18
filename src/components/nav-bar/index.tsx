@@ -27,6 +27,7 @@ const NavBar: ParentComponent = (props) => {
   return (
     <AppBox
       class={cn(navBarVariants({ position: navBar.position }), classes.navBar)}
+      shadow="default"
     >
       <div
         class={cn("relative flex gap-2 text-white", {

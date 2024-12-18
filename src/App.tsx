@@ -1,4 +1,3 @@
-import classes from "./app.module.css";
 import { cn } from "./utils/style";
 import { AppContext, appContextDefaultValue } from "./app-conetent";
 import { createStore } from "solid-js/store";
@@ -22,7 +21,7 @@ function App() {
     <AppContext.Provider
       value={{ appContext, setAppContext, navBar, setNavBar, background }}
     >
-      <Background />
+      {/* <Background /> */}
       <NavBar>
         <Setting />
         <AddWebsite />
@@ -34,7 +33,7 @@ function App() {
           <LayoutGrid />
         </Item>
       </NavBar>
-      <div class={cn(classes.app)}></div>
+      <div></div>
       <FullScreen open={open()}>
         <div class="grid grid-cols-8 grid-rows-8 px-20">
           <div class="aspect-square">1</div>

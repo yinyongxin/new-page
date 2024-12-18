@@ -1,4 +1,4 @@
-@import url("./global.css");
+@import "./global.css";
 @import "./backgroud.css";
 .grid-stack-item-content {
   @apply bg-white/50 rounded-xl;
