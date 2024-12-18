@@ -1,11 +1,10 @@
 import { JSX, ParentProps, useContext } from "solid-js";
 import { cn } from "../../utils/style";
-import { AppContext } from "../../app-conetent";
+import { AppContext, AppContextType } from "../../app-conetent";
 
 export type BoxProps = ParentProps<
   {
-    blur?: {
-      off?: boolean;
+    blur?: Partial<AppContextType["appContext"]["blur"]> & {
       type?: "light" | "dark";
     };
     ref?: HTMLElement;
@@ -16,7 +15,7 @@ export type BoxProps = ParentProps<
 const AppBox = (props: BoxProps) => {
   const { appContext } = useContext(AppContext);
   const { children, blur, style, rounded = "default" } = props;
-  const { off = appContext.blur.flag, type = "light" } = { ...blur };
+  const { flag = appContext.blur.flag, type = "light" } = { ...blur };
   return (
     <div
       style={style}
@@ -24,9 +23,9 @@ const AppBox = (props: BoxProps) => {
       class={cn([
         props.class,
         {
-          "backdrop-blur": off && appContext.blur.size === "default",
-          "backdrop-blur-sm": off && appContext.blur.size === "sm",
-          "backdrop-blur-md": off && appContext.blur.size === "md",
+          "backdrop-blur": flag && appContext.blur.size === "default",
+          "backdrop-blur-sm": flag && appContext.blur.size === "sm",
+          "backdrop-blur-md": flag && appContext.blur.size === "md",
           "bg-white/20": type === "light",
           "bg-black/20": type === "dark",
           "rounded-none": rounded === "none",

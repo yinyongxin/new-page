@@ -20,15 +20,15 @@ const NavBarConfigure = () => {
             setNavBar?.({ position: "top" });
           }}
           class="aspect-square flex flex-col items-center gap-2 p-2"
-          blur={{ off: false, type: "dark" }}
+          blur={{ flag: false, type: "dark" }}
         >
           <AppBox
             class="h-1/4 w-2/3"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
           <AppBox
             class="flex-1 w-full"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
         </AppBox>
         <AppBox
@@ -36,15 +36,15 @@ const NavBarConfigure = () => {
             setNavBar?.({ position: "left" });
           }}
           class="aspect-square flex items-center gap-2 p-2"
-          blur={{ off: false, type: "dark" }}
+          blur={{ flag: false, type: "dark" }}
         >
           <AppBox
             class="w-1/4 h-2/3"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
           <AppBox
             class="flex-1 h-full"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
         </AppBox>
         <AppBox
@@ -52,15 +52,15 @@ const NavBarConfigure = () => {
             setNavBar?.({ position: "right" });
           }}
           class="aspect-square flex flex-row-reverse items-center gap-2 p-2"
-          blur={{ off: false, type: "dark" }}
+          blur={{ flag: false, type: "dark" }}
         >
           <AppBox
             class="w-1/4 h-2/3"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
           <AppBox
             class="flex-1 h-full"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
         </AppBox>
         <AppBox
@@ -68,15 +68,15 @@ const NavBarConfigure = () => {
             setNavBar?.({ position: "bottom" });
           }}
           class="aspect-square flex flex-col-reverse items-center gap-2 p-2"
-          blur={{ off: false, type: "dark" }}
+          blur={{ flag: false, type: "dark" }}
         >
           <AppBox
             class="h-1/4 w-2/3"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
           <AppBox
             class="flex-1 w-full"
-            blur={{ off: false, type: "dark" }}
+            blur={{ flag: false, type: "dark" }}
           ></AppBox>
         </AppBox>
       </div>

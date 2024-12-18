@@ -2,18 +2,18 @@ import { createContext } from "solid-js";
 import { SetStoreFunction } from "solid-js/store";
 import { BackgroundClassName } from "../enums";
 
-type AppContextTypes = {
+export type AppContextType = {
   navBar: {
     position: Position.types;
   };
-  setNavBar?: SetStoreFunction<AppContextTypes["navBar"]>;
+  setNavBar?: SetStoreFunction<AppContextType["navBar"]>;
   appContext: {
     blur: {
       flag: boolean;
       size: "default" | AppSize.BaseSize;
     };
   };
-  setAppContext?: SetStoreFunction<AppContextTypes["appContext"]>;
+  setAppContext?: SetStoreFunction<AppContextType["appContext"]>;
   background: {
     type: "css" | "image";
     className: BackgroundClassName;
@@ -24,7 +24,7 @@ type AppContextTypes = {
   };
 };
 
-export const appContextDefaultValue: AppContextTypes = {
+export const appContextDefaultValue: AppContextType = {
   navBar: {
     position: "left",
   },
@@ -44,7 +44,7 @@ export const appContextDefaultValue: AppContextTypes = {
   },
 };
 
-export const AppContext = createContext<AppContextTypes>(
+export const AppContext = createContext<AppContextType>(
   appContextDefaultValue,
   {}
 );
