@@ -10,7 +10,7 @@ const NavBarConfigure = () => {
     <div class="p-4">
       <AppText title={6}>导航栏设置</AppText>
       <div
-        class={cn("grid grid-cols-4  gap-4 mt-3", {
+        class={cn("grid grid-cols-4 gap-4 mt-3", {
           "md:grid-cols-8 xl:grid-cols-12":
             navBar.position === "top" || navBar.position === "bottom",
         })}

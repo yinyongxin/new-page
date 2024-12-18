@@ -1,11 +1,4 @@
-import {
-  createEffect,
-  createSignal,
-  JSX,
-  ParentComponent,
-  Show,
-  splitProps,
-} from "solid-js";
+import { JSX, ParentComponent, Show, splitProps } from "solid-js";
 import { Portal } from "solid-js/web";
 import { Transition } from "solid-transition-group";
 import { cn } from "../utils/style";
@@ -22,9 +15,9 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
 
   const positionObj = {
     pageTop: `top-4 left-4 right-4 min-h-[10rem]`,
-    pageRight: `right-4 top-4 bottom-4 min-w-[20rem]`,
+    pageRight: `right-4 top-4 bottom-4 left-4 sm:left-auto sm:min-w-[20rem] xl:min-w-[30rem] 2xl:min-w-[40rem]`,
     pageBottom: `bottom-4 left-4 right-4 min-h-[10rem]`,
-    pageLeft: `left-4 top-4 bottom-4 min-w-[20rem]`,
+    pageLeft: `left-4 top-4 bottom-4 right-4 sm:right-auto sm:min-w-[20rem] xl:min-w-[30rem] 2xl:min-w-[40rem]`,
   };
 
   const transformObj = {
