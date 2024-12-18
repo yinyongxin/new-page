@@ -64,9 +64,10 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
       >
         <Show when={local.open}>
           <AppBox
+            shadow="default"
             class={cn([
+              "absolute",
               ohterProps.class,
-              "absolute shadow",
               positionObj[ohterProps.position || "pageRight"],
             ])}
             style={{ ...ohterProps.style }}

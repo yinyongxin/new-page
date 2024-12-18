@@ -1,5 +1,5 @@
 import { VariantProps, cva } from "class-variance-authority";
-import { ParentComponent, splitProps } from "solid-js";
+import { JSX, ParentComponent, splitProps } from "solid-js";
 import { cn } from "../utils/style";
 
 const appTextVariants = cva("text-black", {
@@ -37,11 +37,25 @@ const appTextVariants = cva("text-black", {
   },
 });
 
-const AppText: ParentComponent<VariantProps<typeof appTextVariants>> = (
-  props
-) => {
+type AppTextProps = Pick<JSX.HTMLAttributes<HTMLDivElement>, "class"> &
+  VariantProps<typeof appTextVariants>;
+
+const AppText: ParentComponent<AppTextProps> = (props) => {
   const [local, otherProps] = splitProps(props, ["children"]);
-  return <div class={cn(appTextVariants(otherProps))}>{local.children}</div>;
+
+  return (
+    <div
+      class={cn(
+        appTextVariants({
+          size: otherProps?.size,
+          block: otherProps?.block,
+        }),
+        otherProps.class
+      )}
+    >
+      {local.children}
+    </div>
+  );
 };
 
 export default AppText;
