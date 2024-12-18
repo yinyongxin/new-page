@@ -8,7 +8,7 @@ import NavBarConfigure from "./navbar-configure";
 const Setting = () => {
   let settingRef!: HTMLDivElement;
 
-  const { navBar, setNavBar } = useContext(AppContext);
+  const { navBar } = useContext(AppContext);
   const [open, setOpen] = createSignal(true);
 
   const drawerPositionObj = {
