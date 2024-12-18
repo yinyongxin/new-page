@@ -8,7 +8,10 @@ type AppContextTypes = {
   };
   setNavBar?: SetStoreFunction<AppContextTypes["navBar"]>;
   appContext: {
-    blur: boolean;
+    blur: {
+      flag: boolean;
+      size: "default" | AppSize.BaseSize;
+    };
   };
   setAppContext?: SetStoreFunction<AppContextTypes["appContext"]>;
   background: {
@@ -26,7 +29,10 @@ export const appContextDefaultValue: AppContextTypes = {
     position: "left",
   },
   appContext: {
-    blur: true,
+    blur: {
+      flag: true,
+      size: "default",
+    },
   },
   background: {
     type: "css",

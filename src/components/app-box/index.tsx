@@ -16,7 +16,7 @@ export type BoxProps = ParentProps<
 const AppBox = (props: BoxProps) => {
   const { appContext } = useContext(AppContext);
   const { children, blur, style, rounded = "default" } = props;
-  const { off = appContext.blur, type = "light" } = { ...blur };
+  const { off = appContext.blur.flag, type = "light" } = { ...blur };
   return (
     <div
       style={style}
@@ -24,7 +24,9 @@ const AppBox = (props: BoxProps) => {
       class={cn([
         props.class,
         {
-          "backdrop-blur": off,
+          "backdrop-blur": off && appContext.blur.size === "default",
+          "backdrop-blur-sm": off && appContext.blur.size === "sm",
+          "backdrop-blur-md": off && appContext.blur.size === "md",
           "bg-white/20": type === "light",
           "bg-black/20": type === "dark",
           "rounded-none": rounded === "none",
