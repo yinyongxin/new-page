@@ -1,15 +1,20 @@
-import { JSX, ParentComponent } from "solid-js";
+import { JSX, ParentComponent, ParentProps } from "solid-js";
+import AppBox from "../app-box";
 
-const Item: ParentComponent<
+type ItemProps = {
+	ref?: HTMLDivElement;
+} & ParentProps<
 	Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
-> = (props) => {
+>;
+const Item: ParentComponent<ItemProps> = (props) => {
 	return (
-		<div
-			class="h-12 w-12 bg-black/20 rounded-xl cursor-pointer flex justify-center items-center"
+		<AppBox
+			ref={props.ref}
+			class="h-12 w-12 cursor-pointer flex justify-center items-center"
 			onClick={props.onClick}
 		>
 			{props.children}
-		</div>
+		</AppBox>
 	);
 };
 
