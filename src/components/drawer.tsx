@@ -16,9 +16,9 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
 
 	const positionObj = {
 		pageTop: `top-4 left-4 right-4 min-h-[10rem]`,
-		pageRight: `right-4 top-4 bottom-4 left-4 sm:left-auto sm:min-w-[20rem] xl:min-w-[24rem] 2xl:min-w-[28rem]`,
+		pageRight: `right-4 top-4 bottom-4 left-4 sm:left-auto sm:min-w-[24rem] xl:min-w-[28rem] 2xl:min-w-[30rem]`,
 		pageBottom: `bottom-4 left-4 right-4 min-h-[10rem]`,
-		pageLeft: `left-4 top-4 bottom-4 right-4 sm:right-auto sm:min-w-[20rem] xl:min-w-[24rem] 2xl:min-w-[28rem]`,
+		pageLeft: `left-4 top-4 bottom-4 right-4 sm:right-auto sm:min-w-[24rem] xl:min-w-[28rem] 2xl:min-w-[30rem]`,
 	};
 
 	const transformObj = {

@@ -224,13 +224,15 @@ const AppPupop = (props: AppPupopProps) => {
 				triggerElement.removeEventListener(active, handleClick);
 			});
 		}
-		window.addEventListener("resize", updateTriggerPosition);
-		scrollElement?.addEventListener("scroll", updateTriggerPosition);
+		if (!props.center) {
+			window.addEventListener("resize", updateTriggerPosition);
+			scrollElement?.addEventListener("scroll", updateTriggerPosition);
 
-		onCleanup(() => {
-			window.removeEventListener("resize", updateTriggerPosition);
-			scrollElement?.removeEventListener("scroll", updateTriggerPosition);
-		});
+			onCleanup(() => {
+				window.removeEventListener("resize", updateTriggerPosition);
+				scrollElement?.removeEventListener("scroll", updateTriggerPosition);
+			});
+		}
 	});
 
 	return (
