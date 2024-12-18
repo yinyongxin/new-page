@@ -35,21 +35,21 @@ function App() {
       </NavBar>
       <div></div>
       <FullScreen open={open()}>
-        <div class="grid grid-cols-8 grid-rows-8 px-20">
-          <div class="aspect-square">1</div>
-          <div class="aspect-square">2</div>
-          <div class="aspect-square">3</div>
-          <div class="aspect-square">4</div>
-          <div class="aspect-square">5</div>
-          <div class="aspect-square">6</div>
-          <div class="aspect-square">7</div>
-          <div class="aspect-square">8</div>
-          <div class="aspect-square">9</div>
-          <div class="aspect-square">10</div>
-          <div class="aspect-square">11</div>
-          <div class="aspect-square">12</div>
-          <div class="aspect-square">13</div>
-          <div class="aspect-square">14</div>
+        <div class="grid grid-cols-8 grid-rows-8 px-20 py-32 gap-8">
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">1</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">2</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">3</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">4</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">5</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">6</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">7</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">8</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">9</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">10</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">11</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">12</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">13</div>
+          <div class="aspect-square neumorphism-xs rounded-xl flex justify-center items-center">14</div>
         </div>
       </FullScreen>
     </AppContext.Provider>
