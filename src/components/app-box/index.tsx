@@ -17,7 +17,8 @@ const appBoxVariants = cva("", {
       full: "rounded-full",
     },
     shadow: {
-      none: "shadow-none",
+      // none: "shadow-none",
+      none: "",
       sm: "shadow-sm",
       default: "shadow",
       md: "shadow-md",
@@ -54,13 +55,14 @@ const AppBox = (props: AppBoxProps) => {
       onClick={props.onClick}
       class={cn([
         props.class,
-        appBoxVariants({ rounded, shadow }),
+        appBoxVariants({ rounded }),
         {
           "backdrop-blur-sm": flag && appContext.blur.size === "sm",
           "backdrop-blur": flag && appContext.blur.size === "default",
           "backdrop-blur-md": flag && appContext.blur.size === "md",
-          "bg-white/20": type === "light",
-          "bg-black/20": type === "dark",
+          // "bg-white/20": type === "light",
+          // "bg-black/20": type === "dark",
+          "neumorphism-xs": true,
         },
       ])}
     >

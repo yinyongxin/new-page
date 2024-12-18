@@ -1,6 +1,22 @@
 @layer components {
+  .neumorphism-xs {
+    background: #e0e0e0;
+    box-shadow: 5px 5px 10px #bebebe, -5px -5px 10px #ffffff;
+  }
+  .neumorphism-sm {
+    background: #e0e0e0;
+    box-shadow: 10px 10px 20px #bebebe, -10px -10px 20px #ffffff;
+  }
   .neumorphism {
-    background: #e0e0e0 !important;
-    box-shadow: 10px 10px 30px #bebebe, -10px -10px 30px #ffffff !important;
+    background: #e0e0e0;
+    box-shadow: 15px 15px 30px #bebebe, -15px -15px 30px #ffffff;
+  }
+  .neumorphism-md {
+    background: #e0e0e0;
+    box-shadow: 20px 20px 40px #bebebe, -20px -20px 40px #ffffff;
+  }
+  .neumorphism-lg {
+    background: #e0e0e0;
+    box-shadow: 25px 25px 50px #bebebe, -25px -25px 50px #ffffff;
   }
 }
