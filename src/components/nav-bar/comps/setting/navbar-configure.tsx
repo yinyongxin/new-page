@@ -9,6 +9,7 @@ const NavBarConfigure = () => {
   return (
     <div class="p-4">
       <AppText title={6}>导航栏设置</AppText>
+      <AppText block>位置</AppText>
       <div
         class={cn("grid grid-cols-4 gap-4 mt-3", {
           "md:grid-cols-8 xl:grid-cols-12":
@@ -34,16 +35,8 @@ const NavBarConfigure = () => {
           blur={{ flag: false }}
           type="dark"
         >
-          <AppBox
-            class="w-1/4 h-2/3"
-            blur={{ flag: false }}
-            
-          ></AppBox>
-          <AppBox
-            class="flex-1 h-full"
-            blur={{ flag: false }}
-            
-          ></AppBox>
+          <AppBox class="w-1/4 h-2/3" blur={{ flag: false }}></AppBox>
+          <AppBox class="flex-1 h-full" blur={{ flag: false }}></AppBox>
         </AppBox>
         <AppBox
           onClick={() => {
@@ -53,16 +46,8 @@ const NavBarConfigure = () => {
           blur={{ flag: false }}
           type="dark"
         >
-          <AppBox
-            class="w-1/4 h-2/3"
-            blur={{ flag: false }}
-            
-          ></AppBox>
-          <AppBox
-            class="flex-1 h-full"
-            blur={{ flag: false }}
-            
-          ></AppBox>
+          <AppBox class="w-1/4 h-2/3" blur={{ flag: false }}></AppBox>
+          <AppBox class="flex-1 h-full" blur={{ flag: false }}></AppBox>
         </AppBox>
         <AppBox
           onClick={() => {
@@ -72,15 +57,8 @@ const NavBarConfigure = () => {
           blur={{ flag: false }}
           type="dark"
         >
-          <AppBox
-            class="h-1/4 w-2/3"
-            blur={{ flag: false }}
-            
-          ></AppBox>
-          <AppBox
-            class="flex-1 w-full"
-            blur={{ flag: false }}
-          ></AppBox>
+          <AppBox class="h-1/4 w-2/3" blur={{ flag: false }}></AppBox>
+          <AppBox class="flex-1 w-full" blur={{ flag: false }}></AppBox>
         </AppBox>
       </div>
     </div>

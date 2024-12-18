@@ -9,7 +9,6 @@ const appTextVariants = cva("text-black", {
       sm: "text-sm",
       base: "text-base",
       lg: "text-lg",
-      xl: "text-xl",
     },
     color: {
       error: "text-red-500",
@@ -19,22 +18,22 @@ const appTextVariants = cva("text-black", {
       secondary: "text-gray-500",
       link: "text-blue-500",
     },
-    inline: {
-      true: "inline-block",
-      false: "",
+    block: {
+      true: "block",
+      false: "inline-block",
     },
     title: {
-      1: "text-7xl font-medium",
-      2: "text-6xl font-medium",
-      3: "text-5xl font-medium",
-      4: "text-4xl font-medium",
-      5: "text-3xl font-medium",
-      6: "text-2xl font-medium",
+      1: "text-6xl font-medium",
+      2: "text-5xl font-medium",
+      3: "text-4xl font-medium",
+      4: "text-3xl font-medium",
+      5: "text-2xl font-medium",
+      6: "text-1xl font-medium",
     },
   },
   defaultVariants: {
     size: "base",
-    inline: true,
+    block: false,
   },
 });
 
