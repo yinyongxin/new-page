@@ -9,7 +9,8 @@ export type DrawerProps = {
   position?: "pageTop" | "pageRight" | "pageBottom" | "pageLeft";
   duration?: number;
   alignment?: string;
-} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style">;
+  style?: JSX.CSSProperties;
+} & Pick<JSX.HTMLAttributes<HTMLDivElement>, "class">;
 const Drawer: ParentComponent<DrawerProps> = (props) => {
   const [local, ohterProps] = splitProps(props, ["open"]);
 
@@ -68,7 +69,7 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
               "absolute shadow",
               positionObj[ohterProps.position || "pageRight"],
             ])}
-            style={ohterProps.style}
+            style={{ ...ohterProps.style }}
           >
             {ohterProps.children}
           </AppBox>

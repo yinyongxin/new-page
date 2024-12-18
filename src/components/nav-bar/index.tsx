@@ -12,7 +12,7 @@ const positionOptions: Record<Position.types, string> = {
   left: "left-4 top-1/2 -translate-y-1/2",
 };
 
-const navBarVariants = cva("absolute p-3 rounded-xl z-100s shadow", {
+const navBarVariants = cva("absolute p-3", {
   variants: {
     position: positionOptions,
   },
