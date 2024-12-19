@@ -10,6 +10,7 @@ const Item: ParentComponent<ItemProps> = (props) => {
 	return (
 		<AppBox
 			ref={props.ref}
+			type="dark"
 			class="h-12 w-12 cursor-pointer flex justify-center items-center"
 			onClick={props.onClick}
 		>

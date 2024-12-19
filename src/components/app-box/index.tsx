@@ -57,15 +57,15 @@ const AppBox = (props: AppBoxProps) => {
 				props.class,
 				appBoxVariants({
 					rounded: props.rounded,
-					// shadow: props.shadow
+					shadow: props.shadow
 				}),
 				{
-					// "backdrop-blur-sm": flag && appContext.blur.size === "sm",
-					// "backdrop-blur": flag && appContext.blur.size === "default",
-					// "backdrop-blur-md": flag && appContext.blur.size === "md",
-					// "bg-white/20": type === "light",
-					// "bg-black/20": type === "dark",
-					neumorphism: true,
+					"backdrop-blur-sm": flag && appContext.blur.size === "sm",
+					"backdrop-blur": flag && appContext.blur.size === "default",
+					"backdrop-blur-md": flag && appContext.blur.size === "md",
+					"bg-white/20": type === "light",
+					"bg-black/20": type === "dark",
+					// neumorphism: true,
 				},
 			])}
 		>
