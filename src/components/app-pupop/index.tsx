@@ -87,7 +87,7 @@ const AppPupop = (props: AppPupopProps) => {
 		setOpen(local.open || defaultOpen);
 	});
 
-	const styleMemo = createMemo(() => {
+	const styleMemo = () => {
 		updateTriggerPosition();
 		let resStyle!: JSX.CSSProperties;
 		const triggerPosition = triggerBorderPosition();
@@ -209,7 +209,7 @@ const AppPupop = (props: AppPupopProps) => {
 			};
 		}
 		return resStyle;
-	});
+	};
 
 	onMount(() => {
 		updateTriggerPosition();
