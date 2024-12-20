@@ -13,16 +13,13 @@ import AppText from "./components/app-text";
 import AppBox from "./components/app-box";
 
 function App() {
-	const [appContext, setAppContext] = createStore(
-		appContextDefaultValue.appContext
-	);
 	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
 	const [blur, setBlur] = createStore(appContextDefaultValue.blur);
-	const [background] = createStore(appContextDefaultValue.background);
+	const [background, setBackground] = createStore(appContextDefaultValue.background);
 	const [open, setOpen] = createSignal(0);
 	return (
 		<AppContext.Provider
-			value={{ blur, setBlur, navBar, setNavBar, background }}
+			value={{ blur, setBlur, navBar, setNavBar, background, setBackground }}
 		>
 			<Background />
 			<NavBar>
