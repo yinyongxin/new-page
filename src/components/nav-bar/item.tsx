@@ -13,6 +13,7 @@ const Item: ParentComponent<ItemProps> = (props) => {
 			type="dark"
 			class="h-12 w-12 cursor-pointer flex justify-center items-center"
 			onClick={props.onClick}
+			shadow
 		>
 			{props.children}
 		</AppBox>

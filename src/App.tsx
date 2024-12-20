@@ -18,7 +18,7 @@ function App() {
 	);
 	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
 	const [background] = createStore(appContextDefaultValue.background);
-	const [open, setOpen] = createSignal(false);
+	const [open, setOpen] = createSignal(0);
 	return (
 		<AppContext.Provider
 			value={{ appContext, setAppContext, navBar, setNavBar, background }}
@@ -28,18 +28,69 @@ function App() {
 				<Setting />
 				<Item
 					onClick={() => {
-						setOpen(!open());
+						setOpen(open() ? 0 : 1);
 					}}
 				>
 					<LayoutGrid />
 				</Item>
+				<Item
+					onClick={() => {
+						setOpen(open() ? 0 : 2);
+					}}
+				>
+					asdasd
+				</Item>
 			</NavBar>
 			<div>
-        <AppText color="link"> 
-          link
-        </AppText>
-      </div>
-			<FullScreen open={open()}>
+				<AppText color="link">link</AppText>
+			</div>
+			<FullScreen open={open() === 1}>
+				<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 p-4 sm:p-20 gap-6 sm:gap-8">
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						1
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						2
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						3
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						4
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						5
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						6
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						7
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						8
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						9
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						10
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						11
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						12
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						13
+					</AppBox>
+					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
+						14
+					</AppBox>
+				</div>
+			</FullScreen>
+			<FullScreen open={open() === 2}>
 				<div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 p-4 sm:p-20 gap-6 sm:gap-8">
 					<AppBox class="aspect-square rounded-xl flex justify-center items-center">
 						1

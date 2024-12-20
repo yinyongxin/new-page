@@ -17,10 +17,11 @@ const appBoxVariants = cva("", {
 			full: "rounded-full",
 		},
 		shadow: {
-			// none: "shadow-none",
+			true: "shadow",
+			default: "shadow",
+			false: "",
 			none: "",
 			sm: "shadow-sm",
-			default: "shadow",
 			md: "shadow-md",
 			lg: "shadow-lg",
 			xl: "shadow-xl",
@@ -30,7 +31,7 @@ const appBoxVariants = cva("", {
 	},
 	defaultVariants: {
 		rounded: "xl",
-		shadow: "none",
+		shadow: false,
 	},
 });
 
@@ -57,7 +58,7 @@ const AppBox = (props: AppBoxProps) => {
 				props.class,
 				appBoxVariants({
 					rounded: props.rounded,
-					shadow: props.shadow
+					shadow: props.shadow,
 				}),
 				{
 					"backdrop-blur-sm": flag && appContext.blur.size === "sm",

@@ -21,6 +21,9 @@ export type AppContextType = {
       flag: boolean;
       size: "default" | AppSize.BaseSize;
     };
+    image: {
+      src: string;
+    }
   };
 };
 
@@ -35,12 +38,15 @@ export const appContextDefaultValue: AppContextType = {
     },
   },
   background: {
-    type: "css",
+    type: "image",
     className: BackgroundClassName.BlueLine,
     backdropBlur: {
-      flag: true,
+      flag: false,
       size: "default",
     },
+    image: {
+      src: "https://img.win3000.com/m00/88/f4/4bfb021fbd4c86f1b563f9d837297897.jpg"
+    }
   },
 };
 
