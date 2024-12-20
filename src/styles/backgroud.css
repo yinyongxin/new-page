@@ -15,11 +15,6 @@
 }
 
 .background-blue-line {
-  /* background: radial-gradient(
-		circle,
-		rgba(152, 228, 255, 1) 20%,
-		rgba(0, 109, 237, 1) 100%
-	); */
   background: repeating-linear-gradient(
     45deg,
     #e5e5f7,

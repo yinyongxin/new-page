@@ -41,7 +41,6 @@ const Setting = () => {
 					})}
 				>
 					<NavBarConfigure />
-					<NavBarConfigure />
 				</div>
 			</Drawer>
 		</>

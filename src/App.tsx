@@ -26,7 +26,6 @@ function App() {
 			<Background />
 			<NavBar>
 				<Setting />
-				<AddWebsite />
 				<Item
 					onClick={() => {
 						setOpen(!open());
