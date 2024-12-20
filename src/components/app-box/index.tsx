@@ -30,14 +30,14 @@ const appBoxVariants = cva("", {
 		},
 	},
 	defaultVariants: {
-		rounded: "xl",
+		rounded: "2xl",
 		shadow: false,
 	},
 });
 
 export type AppBoxProps = ParentProps<
 	{
-		blur?: Partial<AppContextType["appContext"]["blur"]>;
+		blur?: Partial<AppContextType["blur"]>;
 		type?: "light" | "dark";
 		ref?: HTMLDivElement;
 		rounded?: "none" | "default" | "sm" | "2xl";
@@ -46,9 +46,9 @@ export type AppBoxProps = ParentProps<
 		Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
 >;
 const AppBox = (props: AppBoxProps) => {
-	const { appContext } = useContext(AppContext);
+	const { blur } = useContext(AppContext);
 	const { type = "light" } = props;
-	const { flag = appContext.blur.flag } = { ...props.blur };
+	const { flag = blur.flag } = { ...props.blur };
 	return (
 		<div
 			ref={props.ref}
@@ -61,9 +61,9 @@ const AppBox = (props: AppBoxProps) => {
 					shadow: props.shadow,
 				}),
 				{
-					"backdrop-blur-sm": flag && appContext.blur.size === "sm",
-					"backdrop-blur": flag && appContext.blur.size === "default",
-					"backdrop-blur-md": flag && appContext.blur.size === "md",
+					"backdrop-blur-sm": flag && blur.size === "sm",
+					"backdrop-blur": flag && blur.size === "default",
+					"backdrop-blur-md": flag && blur.size === "md",
 					"bg-white/20": type === "light",
 					"bg-black/20": type === "dark",
 					// neumorphism: true,

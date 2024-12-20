@@ -17,11 +17,12 @@ function App() {
 		appContextDefaultValue.appContext
 	);
 	const [navBar, setNavBar] = createStore(appContextDefaultValue.navBar);
+	const [blur, setBlur] = createStore(appContextDefaultValue.blur);
 	const [background] = createStore(appContextDefaultValue.background);
 	const [open, setOpen] = createSignal(0);
 	return (
 		<AppContext.Provider
-			value={{ appContext, setAppContext, navBar, setNavBar, background }}
+			value={{ blur, setBlur, navBar, setNavBar, background }}
 		>
 			<Background />
 			<NavBar>
