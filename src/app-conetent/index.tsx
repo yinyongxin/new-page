@@ -24,6 +24,17 @@ export type AppContextType = {
 		};
 	};
 	setBackground?: SetStoreFunction<AppContextType["background"]>;
+	fullWindows: {
+		current: string;
+	};
+	setFullWindows?: SetStoreFunction<AppContextType["fullWindows"]>;
+
+	pages: {
+		current: string;
+		list: string[];
+	};
+
+	setPages?: SetStoreFunction<AppContextType["pages"]>;
 };
 
 export const appContextDefaultValue: AppContextType = {
@@ -44,6 +55,13 @@ export const appContextDefaultValue: AppContextType = {
 		image: {
 			src: "https://img.win3000.com/m00/88/f4/4bfb021fbd4c86f1b563f9d837297897.jpg",
 		},
+	},
+	fullWindows: {
+		current: "",
+	},
+	pages: {
+		current: "default",
+		list: ["default"],
 	},
 };
 

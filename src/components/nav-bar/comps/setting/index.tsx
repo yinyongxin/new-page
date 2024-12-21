@@ -22,6 +22,7 @@ const Setting = () => {
 	return (
 		<>
 			<Item
+				open={open()}
 				ref={settingRef}
 				onClick={() => {
 					setOpen(!open());

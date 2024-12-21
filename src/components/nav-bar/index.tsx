@@ -15,7 +15,7 @@ const positionOptions: Record<Position.types, string> = {
 };
 
 const NavBar = () => {
-	const { navBar } = useContext(AppContext);
+	const { navBar, fullWindows, setFullWindows } = useContext(AppContext);
 
 	return (
 		<AppBox
@@ -32,7 +32,20 @@ const NavBar = () => {
 				})}
 			>
 				<Setting />
-				<Item>
+				<Item
+				open={fullWindows.current === "page-manage"}
+					onClick={() => {
+						if (fullWindows.current === "page-manage") {
+							setFullWindows?.({
+								current: "",
+							});
+						} else {
+							setFullWindows?.({
+								current: "page-manage",
+							});
+						}
+					}}
+				>
 					<LayoutGrid />
 				</Item>
 			</div>

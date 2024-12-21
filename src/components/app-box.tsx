@@ -1,4 +1,4 @@
-import { JSX, ParentProps, useContext } from "solid-js";
+import { JSX, ParentProps, useContext, mergeProps } from "solid-js";
 import { cn } from "../utils/style";
 import { AppContext, AppContextType } from "../app-conetent";
 import { VariantProps, cva } from "class-variance-authority";
@@ -47,7 +47,12 @@ export type AppBoxProps = ParentProps<
 >;
 const AppBox = (props: AppBoxProps) => {
 	const { blur } = useContext(AppContext);
-	const { type = "light" } = props;
+	const merge = mergeProps(
+		{
+			type: "light",
+		},
+		props
+	);
 	const { flag = blur.flag } = { ...props.blur };
 	return (
 		<div
@@ -64,8 +69,8 @@ const AppBox = (props: AppBoxProps) => {
 					"backdrop-blur-sm": flag && blur.size === "sm",
 					"backdrop-blur": flag && blur.size === "default",
 					"backdrop-blur-md": flag && blur.size === "md",
-					"bg-white/20": type === "light",
-					"bg-black/20": type === "dark",
+					"bg-white/20": merge.type === "light",
+					"bg-black/20": merge.type === "dark",
 					// neumorphism: true,
 				},
 			])}

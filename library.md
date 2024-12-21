@@ -30,7 +30,7 @@ clsx 是一个用于条件性拼接 CSS 类名的小型 JavaScript 库。它非�
 
 ## solid-toast
 
-https://www.solid-toast.com/
+<https://www.solid-toast.com/>
 
 ## gridstackjs
 
@@ -44,3 +44,6 @@ https://www.solid-toast.com/
 - 跨浏览器兼容：支持主流的现代浏览器。
 - 易于集成：提供了简单的 API，可以轻松集成到现有的项目中。
   
+## solid-transition-group
+
+<https://github.com/solidjs-community/solid-transition-group>

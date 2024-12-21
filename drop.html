@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Drag and Drop Sorting</title>
+		<style>
+			ul {
+				list-style-type: none;
+				padding: 0;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+			}
+			li {
+				margin: 5px;
+				padding: 10px;
+				background-color: #f0f0f0;
+				border: 2px solid #ddd;
+			}
+			li:active {
+				cursor: move;
+			}
+			.over {
+				border: 2px dashed #000;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>拖动排序示例</h1>
+		<ul id="sortable">
+			<li draggable="true">Item 1</li>
+			<li draggable="true">Item 2</li>
+			<li draggable="true">Item 3</li>
+			<li draggable="true">Item 4</li>
+			<li draggable="true">Item 5</li>
+			<li draggable="true">Item 6</li>
+			<li draggable="true">Item 7</li>
+			<li draggable="true">Item 8</li>
+		</ul>
+
+		<script>
+			const items = document.querySelectorAll("#sortable li");
+
+			items.forEach((item) => {
+				item.addEventListener("dragstart", dragStart);
+				item.addEventListener("dragover", dragOver);
+				item.addEventListener("dragleave", dragLeave);
+				item.addEventListener("drop", drop);
+				item.addEventListener("dragend", dragEnd);
+			});
+
+			let dragSourceElement;
+
+			function dragStart(e) {
+				dragSourceElement = this;
+				e.dataTransfer.effectAllowed = "move";
+				e.dataTransfer.setData("text/html", this.innerHTML);
+				this.classList.add("dragging");
+			}
+
+			function dragOver(e) {
+				e.preventDefault();
+				e.dataTransfer.dropEffect = "move";
+				this.classList.add("over");
+			}
+
+			function dragLeave() {
+				this.classList.remove("over");
+			}
+
+			function drop(e) {
+				e.stopPropagation();
+				if (dragSourceElement !== this) {
+					// 将被拖动的元素插入到目标元素之前或之后
+					dragSourceElement.innerHTML = this.innerHTML;
+					this.innerHTML = e.dataTransfer.getData("text/html");
+				}
+				return false;
+			}
+
+			function dragEnd() {
+				items.forEach((item) => {
+					item.classList.remove("over");
+					item.classList.remove("dragging");
+				});
+			}
+		</script>
+	</body>
+</html>
