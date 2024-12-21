@@ -1,43 +1,43 @@
-import { cva } from "class-variance-authority";
 import { cn } from "../../utils/style";
 import classes from "./index.module.css";
-import { ParentComponent, useContext } from "solid-js";
+import { useContext } from "solid-js";
 import { AppContext } from "../../app-conetent";
 import AppBox from "../app-box";
+import { LayoutGrid, Layout } from "lucide-solid";
+import Setting from "./comps/setting";
+import Item from "./item";
 
 const positionOptions: Record<Position.types, string> = {
-  top: "top-4 left-1/2 -translate-x-1/2",
-  right: "right-4 top-1/2 -translate-y-1/2",
-  bottom: "bottom-4 left-1/2 -translate-x-1/2",
-  left: "left-4 top-1/2 -translate-y-1/2",
+	top: "top-4 left-1/2 -translate-x-1/2",
+	right: "right-4 top-1/2 -translate-y-1/2",
+	bottom: "bottom-4 left-1/2 -translate-x-1/2",
+	left: "left-4 top-1/2 -translate-y-1/2",
 };
 
-const navBarVariants = cva("absolute p-3", {
-  variants: {
-    position: positionOptions,
-  },
-  defaultVariants: {
-    position: "left",
-  },
-});
+const NavBar = () => {
+	const { navBar } = useContext(AppContext);
 
-const NavBar: ParentComponent = (props) => {
-  const { navBar } = useContext(AppContext);
-
-  return (
-    <AppBox
-      class={cn(navBarVariants({ position: navBar.position }), classes.navBar)}
-      shadow="default"
-    >
-      <div
-        class={cn("relative flex gap-2 text-white", {
-          "flex-col": navBar.position === "left" || navBar.position === "right",
-        })}
-      >
-        {props.children}
-      </div>
-    </AppBox>
-  );
+	return (
+		<AppBox
+			class={cn(
+				"absolute p-3",
+				positionOptions[navBar.position],
+				classes.navBar
+			)}
+			shadow="default"
+		>
+			<div
+				class={cn("relative flex gap-2 text-white", {
+					"flex-col": navBar.position === "left" || navBar.position === "right",
+				})}
+			>
+				<Setting />
+				<Item>
+					<LayoutGrid />
+				</Item>
+			</div>
+		</AppBox>
+	);
 };
 
 export default NavBar;

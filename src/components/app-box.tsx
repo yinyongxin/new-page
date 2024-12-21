@@ -1,6 +1,6 @@
 import { JSX, ParentProps, useContext } from "solid-js";
-import { cn } from "../../utils/style";
-import { AppContext, AppContextType } from "../../app-conetent";
+import { cn } from "../utils/style";
+import { AppContext, AppContextType } from "../app-conetent";
 import { VariantProps, cva } from "class-variance-authority";
 
 const appBoxVariants = cva("", {
