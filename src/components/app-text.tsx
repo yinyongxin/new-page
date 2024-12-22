@@ -42,7 +42,6 @@ type AppTextProps = Pick<JSX.HTMLAttributes<HTMLDivElement>, "class"> &
 
 const AppText: ParentComponent<AppTextProps> = (props) => {
 	const [local, otherProps] = splitProps(props, ["children"]);
-console.log('AppText', local.children)
 	return (
 		<div
 			class={cn(
