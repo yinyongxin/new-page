@@ -29,40 +29,40 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
   };
 
   return (
-    <Transition
-      onEnter={(el, done) => {
-        const a = el.animate(
-          [
+    <Portal mount={document.getElementById("drawer") as Node}>
+      <Transition
+        onEnter={(el, done) => {
+          const a = el.animate(
+            [
+              {
+                opacity: 0,
+                transform: transformObj[ohterProps.position || "pageRight"],
+              },
+              { opacity: 1 },
+            ],
             {
-              opacity: 0,
-              transform: transformObj[ohterProps.position || "pageRight"],
-            },
-            { opacity: 1 },
-          ],
-          {
-            duration: ohterProps.duration || 300,
-          }
-        );
-        a.finished.then(done);
-      }}
-      onExit={(el, done) => {
-        const a = el.animate(
-          [
-            { opacity: 1 },
+              duration: ohterProps.duration || 300,
+            }
+          );
+          a.finished.then(done);
+        }}
+        onExit={(el, done) => {
+          const a = el.animate(
+            [
+              { opacity: 1 },
+              {
+                opacity: 0,
+                transform: transformObj[ohterProps.position || "pageRight"],
+              },
+            ],
             {
-              opacity: 0,
-              transform: transformObj[ohterProps.position || "pageRight"],
-            },
-          ],
-          {
-            duration: ohterProps.duration || 300,
-          }
-        );
-        a.finished.then(done);
-      }}
-    >
-      <Show when={local.open}>
-        <Portal mount={document.getElementById("drawer") as Node}>
+              duration: ohterProps.duration || 300,
+            }
+          );
+          a.finished.then(done);
+        }}
+      >
+        <Show when={local.open}>
           <AppBox
             shadow="default"
             class={cn([
@@ -74,9 +74,9 @@ const Drawer: ParentComponent<DrawerProps> = (props) => {
           >
             {ohterProps.children}
           </AppBox>
-        </Portal>
-      </Show>
-    </Transition>
+        </Show>
+      </Transition>
+    </Portal>
   );
 };
 

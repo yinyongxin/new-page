@@ -27,7 +27,7 @@
     };
     # 启用预览并自定义配置
     previews = {
-      enable = true;
+      enable = false;
       previews = {
         web = {
           command = [ "npm" "run" "dev" "--" "--port" "$PORT" "--host" "0.0.0.0" ];
