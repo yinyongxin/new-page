@@ -19,17 +19,16 @@ const Background = () => {
 			style={getStyle()}
 		>
 			<div
-				class={cn("h-full w-full", {
-					"backdrop-blur-sm bg-white/30":
-						background.backdropBlur.flag &&
-						background.backdropBlur.size === "sm",
-					"backdrop-blur bg-white/30":
-						background.backdropBlur.flag &&
-						background.backdropBlur.size === "default",
-					"backdrop-blur-md bg-white/30":
-						background.backdropBlur.flag &&
-						background.backdropBlur.size === "md",
-				})}
+				class={cn(
+					"h-full w-full bg-black/30",
+					background.backdropBlur.flag
+						? {
+								"backdrop-blur-sm": background.backdropBlur.size === "sm",
+								"backdrop-blur": background.backdropBlur.size === "default",
+								"backdrop-blur-md": background.backdropBlur.size === "md",
+						  }
+						: {}
+				)}
 			/>
 		</div>
 	);
