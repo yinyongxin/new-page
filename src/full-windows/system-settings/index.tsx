@@ -89,7 +89,7 @@ const SystemSettings = () => {
 						<div class="grid grid-cols-2 mt-2 gap-3">
 							<AppBox
 								class={cn(
-									"flex justify-center items-center p-3 cursor-pointer"
+									"flex justify-center items-center py-4 cursor-pointer"
 								)}
 								bgFreground={background.type === "css"}
 								onClick={() => {
@@ -101,7 +101,7 @@ const SystemSettings = () => {
 								CSS样式
 							</AppBox>
 							<AppBox
-								class="flex justify-center items-center p-3 cursor-pointer"
+								class="flex justify-center items-center py-4 cursor-pointer"
 								bgFreground={background.type === "image"}
 								onClick={() => {
 									setBackground?.({
@@ -138,7 +138,7 @@ const SystemSettings = () => {
 						</AppText>
 						<div class="grid grid-cols-[auto_1fr] gap-4 mt-4">
 							<AppBox
-								class="px-4 py-2 cursor-pointer"
+								class="px-6 py-4 cursor-pointer"
 								bgFreground={background.backdropBlur.flag}
 								onClick={() => {
 									setBackground?.({
@@ -151,7 +151,7 @@ const SystemSettings = () => {
 							>
 								{background.backdropBlur.flag ? "开" : "关"}
 							</AppBox>
-							<AppBox class="grid grid-cols-3 divide-x overflow-hidden">
+							<AppBox class="grid grid-cols-3 divide-x divide-gray-500 overflow-hidden">
 								<div
 									class={cn("flex justify-center items-center cursor-pointer", {
 										"bg-black/30 text-white":
