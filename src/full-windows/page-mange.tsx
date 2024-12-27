@@ -27,7 +27,7 @@ const PageMange = () => {
                 }}
               >
                 <Icon name="Code" size="50%" />
-                <div class="absolute -bottom-8 sm:-bottom-10 left-0 right-0 flex justify-center items-center">
+                <div class="absolute h-8  sm:h-10 -bottom-8 sm:-bottom-10 left-0 right-0 flex justify-center items-center">
                   <AppText>{page().title}</AppText>
                 </div>
               </AppBox>
