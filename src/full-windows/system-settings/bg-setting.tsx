@@ -3,7 +3,7 @@ import AppBox from "../../components/app-box";
 import AppText from "../../components/app-text";
 import { cn } from "../../utils/style";
 import { AppContext } from "../../app-conetent";
-import { BackgroundClassNameList } from "../../common";
+import { BackgroundClassNameList, BgImageList } from "../../common";
 import Icon from "../../components/icon";
 
 const BgSetting = () => {
@@ -15,12 +15,26 @@ const BgSetting = () => {
 				className: BackgroundClassNameList[index - 1],
 			});
 		}
+		if (background.type === "image") {
+			const index = BgImageList.indexOf(background.image.src);
+			setBackground?.({
+				image: { src: BgImageList[index - 1] },
+			});
+		}
 	};
 	const next = () => {
-		const index = BackgroundClassNameList.indexOf(background.className);
-		setBackground?.({
-			className: BackgroundClassNameList[index + 1],
-		});
+		if (background.type === "css") {
+			const index = BackgroundClassNameList.indexOf(background.className);
+			setBackground?.({
+				className: BackgroundClassNameList[index + 1],
+			});
+		}
+		if (background.type === "image") {
+			const index = BgImageList.indexOf(background.image.src);
+			setBackground?.({
+				image: { src: BgImageList[index + 1] },
+			});
+		}
 	};
 	return (
 		<div>
