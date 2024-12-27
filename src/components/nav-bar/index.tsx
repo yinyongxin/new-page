@@ -31,15 +31,15 @@ const NavBar = () => {
         })}
       >
         <Item
-          open={fullWindows.current === "settings"}
+          open={fullWindows.current === "system-settings"}
           onClick={() => {
-            if (fullWindows.current === "settings") {
+            if (fullWindows.current === "system-settings") {
               setFullWindows?.({
                 current: "",
               });
             } else {
               setFullWindows?.({
-                current: "settings",
+                current: "system-settings",
               });
             }
           }}
