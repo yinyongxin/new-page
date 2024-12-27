@@ -49,7 +49,7 @@ export const appContextDefaultValue: AppContextType = {
     type: "image",
     className: BackgroundClassName.BlueLine,
     backdropBlur: {
-      flag: false,
+      flag: true,
       size: "default",
     },
     image: {
@@ -60,10 +60,10 @@ export const appContextDefaultValue: AppContextType = {
     current: "",
   },
   pages: {
-    current: "House",
+    current: "default",
     list: [
       { key: "default", title: "默认", icon: "House" },
-      { key: "front-end", title: "前端", icon: "House" },
+      { key: "front-end", title: "前端", icon: "Code" },
     ],
   },
 };

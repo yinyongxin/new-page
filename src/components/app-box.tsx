@@ -64,8 +64,8 @@ const AppBox = (props: AppBoxProps) => {
           "backdrop-blur-sm": flag && blur.size === "sm",
           "backdrop-blur": flag && blur.size === "default",
           "backdrop-blur-md": flag && blur.size === "md",
-          "bg-white/30": !props.bgFreground,
-          "bg-black/30": !!props.bgFreground,
+          "bg-white/40": !props.bgFreground,
+          "bg-black/40": !!props.bgFreground,
           // neumorphism: true,
         },
       ])}

@@ -9,7 +9,7 @@ type PageMangeProps = {
   open: boolean;
 };
 const PageMange = (props: PageMangeProps) => {
-  const { pages } = useContext(AppContext);
+  const { pages, setPages } = useContext(AppContext);
   // let gridStack!: HTMLDivElement;
   // const init = () => {
   // 	if (!props.open) {
@@ -47,8 +47,16 @@ const PageMange = (props: PageMangeProps) => {
         <Index each={pages.list}>
           {(page) => {
             return (
-              <AppBox class="aspect-square rounded-xl flex justify-center items-center relative">
-                <Icon name="House" size="50%" />
+              <AppBox
+                class="aspect-square rounded-xl flex justify-center items-center relative cursor-pointer"
+                bgFreground={page().key === pages.current}
+                onClick={() => {
+                  setPages?.({
+                    current: page().key,
+                  });
+                }}
+              >
+                <Icon name="Code" size="50%" />
                 <div class="absolute -bottom-6 sm:-bottom-8 left-0 right-0 flex justify-center items-center">
                   <AppText>{page().title}</AppText>
                 </div>
