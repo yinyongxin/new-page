@@ -11,13 +11,8 @@ import { Transition } from "solid-transition-group";
 import { cn } from "../utils/style";
 import AppBox from "./app-box";
 import { AppContext } from "../app-conetent";
+import { paddingObj } from "../common";
 
-const paddingObj: Record<Position.types, string> = {
-  top: "pt-[6.7rem] pb-4 px-4",
-  right: "pr-[6.7rem] pl-4 py-4",
-  bottom: "pb-[6.7rem] pt-4 px-4",
-  left: "pl-[6.7rem] pr-4 py-4",
-};
 
 export type FullScreenProps = {
   open?: boolean;

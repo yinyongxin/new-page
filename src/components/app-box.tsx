@@ -60,6 +60,7 @@ const AppBox = (props: AppBoxProps) => {
           rounded: props.rounded,
           shadow: props.shadow,
         }),
+				'text-xs sm:text-base',
         {
           "backdrop-blur-sm": flag && blur.size === "sm",
           "backdrop-blur": flag && blur.size === "default",

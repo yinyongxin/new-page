@@ -13,7 +13,7 @@ const PageMange = () => {
       <header class="flex justify-center">
         <AppText title={6}>页面管理</AppText>
       </header>
-      <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 sm:p-20 gap-6 sm:gap-8">
+      <div class="grid grid-cols-4 md:grid-cols-6 lg:grid-cols-8 xl:grid-cols-12 p-6 sm:p-20 gap-8 sm:gap-10">
         <Index each={pages.list}>
           {(page) => {
             return (
@@ -27,7 +27,7 @@ const PageMange = () => {
                 }}
               >
                 <Icon name="Code" size="50%" />
-                <div class="absolute -bottom-6 sm:-bottom-8 left-0 right-0 flex justify-center items-center">
+                <div class="absolute -bottom-8 sm:-bottom-10 left-0 right-0 flex justify-center items-center">
                   <AppText>{page().title}</AppText>
                 </div>
               </AppBox>
