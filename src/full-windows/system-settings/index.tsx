@@ -112,10 +112,10 @@ const SystemSettings = () => {
                 图片
               </AppBox>
             </div>
-            <AppBox class="h-36 mt-4 grid grid-cols-[1fr_auto] p-4 gap-4">
+            <AppBox class="mt-4 grid grid-cols-[1fr_auto] p-4 gap-4">
               <div>
                 <div
-                  class={cn("size-full rounded-xl", {
+                  class={cn("size-full rounded-xl aspect-video", {
                     [background.className]: background.type === "css",
                   })}
                 >
@@ -161,7 +161,7 @@ const SystemSettings = () => {
                     setBackground?.({
                       backdropBlur: {
                         size: "sm",
-                        flag: !background.backdropBlur.flag,
+                        flag: background.backdropBlur.flag,
                       },
                     });
                   }}
@@ -177,7 +177,7 @@ const SystemSettings = () => {
                     setBackground?.({
                       backdropBlur: {
                         size: "default",
-                        flag: !background.backdropBlur.flag,
+                        flag: background.backdropBlur.flag,
                       },
                     });
                   }}
@@ -193,7 +193,7 @@ const SystemSettings = () => {
                     setBackground?.({
                       backdropBlur: {
                         size: "md",
-                        flag: !background.backdropBlur.flag,
+                        flag: background.backdropBlur.flag,
                       },
                     });
                   }}
