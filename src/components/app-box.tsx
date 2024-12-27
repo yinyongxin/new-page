@@ -41,18 +41,14 @@ export type AppBoxProps = ParentProps<
     type?: "light" | "dark";
     ref?: HTMLDivElement;
     rounded?: "none" | "default" | "sm" | "2xl";
+    bgFreground?: boolean;
   } & VariantProps<typeof appBoxVariants> &
     Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style"> &
     Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
 >;
 const AppBox = (props: AppBoxProps) => {
   const { blur } = useContext(AppContext);
-  const merge = mergeProps(
-    {
-      type: "light",
-    },
-    props
-  );
+
   const { flag = blur.flag } = { ...props.blur };
   return (
     <div
@@ -69,8 +65,8 @@ const AppBox = (props: AppBoxProps) => {
           "backdrop-blur-sm": flag && blur.size === "sm",
           "backdrop-blur": flag && blur.size === "default",
           "backdrop-blur-md": flag && blur.size === "md",
-          "bg-white/30": merge.type === "light",
-          "bg-black/30": merge.type === "dark",
+          "bg-white/30": !props.bgFreground,
+          "bg-black/30": !!props.bgFreground,
           // neumorphism: true,
         },
       ])}
