@@ -1,9 +1,7 @@
-import Plus from "lucide-solid/icons/plus";
 import AppBox from "../components/app-box";
 import FullScreen from "../components/full-screen";
 import AppText from "../components/app-text";
-import { Index, createContext, onMount, useContext } from "solid-js";
-import { GridStack } from "gridstack";
+import { Index, useContext } from "solid-js";
 import { AppContext } from "../app-conetent";
 import Icon from "../components/icon";
 

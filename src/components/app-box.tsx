@@ -1,4 +1,4 @@
-import { JSX, ParentProps, useContext, mergeProps } from "solid-js";
+import { JSX, ParentProps, useContext } from "solid-js";
 import { cn } from "../utils/style";
 import { AppContext, AppContextType } from "../app-conetent";
 import { VariantProps, cva } from "class-variance-authority";
@@ -38,7 +38,6 @@ const appBoxVariants = cva("", {
 export type AppBoxProps = ParentProps<
   {
     blur?: Partial<AppContextType["blur"]>;
-    type?: "light" | "dark";
     ref?: HTMLDivElement;
     rounded?: "none" | "default" | "sm" | "2xl";
     bgFreground?: boolean;

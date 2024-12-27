@@ -11,7 +11,7 @@ const Item: ParentComponent<ItemProps> = (props) => {
   return (
     <AppBox
       ref={props.ref}
-      type={props.open ? "light" : "dark"}
+      bgFreground={props.open}
       class="h-12 w-12 cursor-pointer flex justify-center items-center relative"
       onClick={props.onClick}
       shadow
