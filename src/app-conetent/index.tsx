@@ -1,6 +1,10 @@
 import { createContext } from "solid-js";
 import { SetStoreFunction } from "solid-js/store";
-import { BackgroundClassName } from "../enums";
+import {
+  BackgroundClassName,
+  BackgroundClassNameList,
+  BgImageList,
+} from "../common";
 
 export type AppContextType = {
   navBar: {
@@ -47,13 +51,13 @@ export const appContextDefaultValue: AppContextType = {
   },
   background: {
     type: "image",
-    className: BackgroundClassName.BlueLine,
+    className: BackgroundClassNameList[0],
     backdropBlur: {
       flag: true,
       size: "default",
     },
     image: {
-      src: "https://img.win3000.com/m00/88/f4/4bfb021fbd4c86f1b563f9d837297897.jpg",
+      src: BgImageList[0],
     },
   },
   fullWindows: {

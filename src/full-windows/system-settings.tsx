@@ -5,10 +5,23 @@ import { Show, useContext } from "solid-js";
 import { AppContext } from "../app-conetent";
 import { cn } from "../utils/style";
 import Icon from "../components/icon";
+import { BackgroundClassNameList } from "../common";
 
 const SystemSettings = () => {
   const { background, setBackground, navBar, setNavBar, fullWindows } =
     useContext(AppContext);
+  const prev = () => {
+    const index = BackgroundClassNameList.indexOf(background.className);
+    setBackground?.({
+      className: BackgroundClassNameList[index - 1],
+    });
+  };
+  const next = () => {
+    const index = BackgroundClassNameList.indexOf(background.className);
+    setBackground?.({
+      className: BackgroundClassNameList[index + 1],
+    });
+  };
 
   return (
     <FullScreen open={fullWindows.current === "system-settings"}>
@@ -114,8 +127,8 @@ const SystemSettings = () => {
                 </div>
               </div>
               <div class="flex flex-col justify-center gap-4">
-                <Icon name="ArrowUp" class="cursor-pointer" />
-                <Icon name="ArrowDown" class="cursor-pointer" />
+                <Icon name="ArrowUp" class="cursor-pointer" onClick={prev} />
+                <Icon name="ArrowDown" class="cursor-pointer" onClick={next} />
               </div>
             </AppBox>
           </div>
