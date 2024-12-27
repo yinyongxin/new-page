@@ -5,41 +5,11 @@ import { Index, useContext } from "solid-js";
 import { AppContext } from "../app-conetent";
 import Icon from "../components/icon";
 
-type PageMangeProps = {
-  open: boolean;
-};
-const PageMange = (props: PageMangeProps) => {
-  const { pages, setPages } = useContext(AppContext);
-  // let gridStack!: HTMLDivElement;
-  // const init = () => {
-  // 	if (!props.open) {
-  // 		return;
-  // 	}
-  // 	var grid = GridStack.init(
-  // 		{
-  // 			float: true,
-  // 		},
-  // 		gridStack
-  // 	);
-  // 	const serializedData = [
-  // 		{ x: 0, y: 0, w: 1, h: 1, content: "item 1" },
-  // 		{ x: 1, y: 0, w: 1, content: "item 2" },
-  // 		{ x: 2, y: 0, content: "item 3" },
-  // 	];
-
-  // 	grid.load(serializedData);
-  // };
-  // onMount(() => {
-  // 	console.log("props.open", props.open);
-  // 	console.log("gridStack", gridStack);
-  // 	setTimeout(() => {
-  // 		init();
-  // 	}, 0);
-  // });
-  console.log("pages", pages);
+const PageMange = () => {
+  const { pages, setPages, fullWindows } = useContext(AppContext);
 
   return (
-    <FullScreen open={props.open}>
+    <FullScreen open={fullWindows.current === "page-manage"}>
       <header class="flex justify-center">
         <AppText title={6}>页面管理</AppText>
       </header>

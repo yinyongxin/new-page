@@ -3,8 +3,7 @@ import classes from "./index.module.css";
 import { useContext } from "solid-js";
 import { AppContext } from "../../app-conetent";
 import AppBox from "../app-box";
-import { LayoutGrid, Layout } from "lucide-solid";
-import Setting from "./comps/setting";
+import { LayoutGrid, Settings } from "lucide-solid";
 import Item from "./item";
 
 const positionOptions: Record<Position.types, string> = {
@@ -31,7 +30,22 @@ const NavBar = () => {
           "flex-col": navBar.position === "left" || navBar.position === "right",
         })}
       >
-        <Setting />
+        <Item
+          open={fullWindows.current === "settings"}
+          onClick={() => {
+            if (fullWindows.current === "settings") {
+              setFullWindows?.({
+                current: "",
+              });
+            } else {
+              setFullWindows?.({
+                current: "settings",
+              });
+            }
+          }}
+        >
+          <Settings />
+        </Item>
         <Item
           open={fullWindows.current === "page-manage"}
           onClick={() => {
