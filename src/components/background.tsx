@@ -20,9 +20,15 @@ const Background = () => {
     >
       <div
         class={cn("h-full w-full", {
-          "backdrop-blur bg-white/20":
+          "backdrop-blur-sm bg-white/30":
+            background.backdropBlur.flag &&
+            background.backdropBlur.size === "sm",
+          "backdrop-blur bg-white/30":
             background.backdropBlur.flag &&
             background.backdropBlur.size === "default",
+          "backdrop-blur-md bg-white/30":
+            background.backdropBlur.flag &&
+            background.backdropBlur.size === "md",
         })}
       />
     </div>

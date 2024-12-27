@@ -1,20 +1,22 @@
-import AppBox from "../components/app-box";
-import FullScreen from "../components/full-screen";
-import AppText from "../components/app-text";
+import AppBox from "../../components/app-box";
+import FullScreen from "../../components/full-screen";
+import AppText from "../../components/app-text";
 import { Show, useContext } from "solid-js";
-import { AppContext } from "../app-conetent";
-import { cn } from "../utils/style";
-import Icon from "../components/icon";
-import { BackgroundClassNameList } from "../common";
+import { AppContext } from "../../app-conetent";
+import { cn } from "../../utils/style";
+import Icon from "../../components/icon";
+import { BackgroundClassNameList } from "../../common";
 
 const SystemSettings = () => {
   const { background, setBackground, navBar, setNavBar, fullWindows } =
     useContext(AppContext);
   const prev = () => {
-    const index = BackgroundClassNameList.indexOf(background.className);
-    setBackground?.({
-      className: BackgroundClassNameList[index - 1],
-    });
+    if (background.type === "css") {
+      const index = BackgroundClassNameList.indexOf(background.className);
+      setBackground?.({
+        className: BackgroundClassNameList[index - 1],
+      });
+    }
   };
   const next = () => {
     const index = BackgroundClassNameList.indexOf(background.className);
@@ -127,10 +129,79 @@ const SystemSettings = () => {
                 </div>
               </div>
               <div class="flex flex-col justify-center gap-4">
-                <Icon name="ArrowUp" class="cursor-pointer" onClick={prev} />
+                <Icon name="ArrowUp" class="c" onClick={prev} />
                 <Icon name="ArrowDown" class="cursor-pointer" onClick={next} />
               </div>
             </AppBox>
+            <AppText size="lg" class="mt-4">
+              磨砂效果
+            </AppText>
+            <div class="grid grid-cols-[auto_1fr] gap-4 mt-4">
+              <AppBox
+                class="px-4 py-2 cursor-pointer"
+                bgFreground={background.backdropBlur.flag}
+                onClick={() => {
+                  setBackground?.({
+                    backdropBlur: {
+                      ...background.backdropBlur,
+                      flag: !background.backdropBlur.flag,
+                    },
+                  });
+                }}
+              >
+                {background.backdropBlur.flag ? "开" : "关"}
+              </AppBox>
+              <AppBox class="grid grid-cols-3 divide-x overflow-hidden">
+                <div
+                  class={cn("flex justify-center items-center cursor-pointer", {
+                    "bg-black/30 text-white":
+                      background.backdropBlur.size === "sm",
+                  })}
+                  onClick={() => {
+                    setBackground?.({
+                      backdropBlur: {
+                        size: "sm",
+                        flag: !background.backdropBlur.flag,
+                      },
+                    });
+                  }}
+                >
+                  小
+                </div>
+                <div
+                  class={cn("flex justify-center items-center cursor-pointer", {
+                    "bg-black/30 text-white":
+                      background.backdropBlur.size === "default",
+                  })}
+                  onClick={() => {
+                    setBackground?.({
+                      backdropBlur: {
+                        size: "default",
+                        flag: !background.backdropBlur.flag,
+                      },
+                    });
+                  }}
+                >
+                  默认
+                </div>
+                <div
+                  class={cn("flex justify-center items-center cursor-pointer", {
+                    "bg-black/30 text-white":
+                      background.backdropBlur.size === "md",
+                  })}
+                  onClick={() => {
+                    setBackground?.({
+                      backdropBlur: {
+                        size: "md",
+                        flag: !background.backdropBlur.flag,
+                      },
+                    });
+                  }}
+                >
+                  大
+                </div>
+              </AppBox>
+            </div>
           </div>
         </div>
       </div>
