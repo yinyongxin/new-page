@@ -13,13 +13,9 @@ const SystemSettings = () => {
 			<div class="h-full overflow-auto">
 				<div
 					class={cn(
-						"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
+						"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-max"
 					)}
 				>
-					<NavBarSetting />
-					<BgSetting />
-					<NavBarSetting />
-					<BgSetting />
 					<NavBarSetting />
 					<BgSetting />
 				</div>
