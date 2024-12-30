@@ -16,7 +16,7 @@ const NavBarSetting = () => {
 					}}
 					class="aspect-square flex flex-col items-center gap-2 p-2"
 					blur={{ flag: false }}
-					bgFreground={navBar.position === "top"}
+					active={navBar.position === "top"}
 				>
 					<AppBox class="h-1/4 w-2/3" blur={{ flag: false }}></AppBox>
 					<AppBox class="flex-1 w-full" blur={{ flag: false }}></AppBox>
@@ -26,7 +26,7 @@ const NavBarSetting = () => {
 					onClick={() => {
 						setNavBar?.({ position: "right" });
 					}}
-					bgFreground={navBar.position === "right"}
+					active={navBar.position === "right"}
 					class="aspect-square flex flex-row-reverse items-center gap-2 p-2"
 					blur={{ flag: false }}
 				>
@@ -37,7 +37,7 @@ const NavBarSetting = () => {
 					onClick={() => {
 						setNavBar?.({ position: "bottom" });
 					}}
-					bgFreground={navBar.position === "bottom"}
+					active={navBar.position === "bottom"}
 					class="aspect-square flex flex-col-reverse items-center gap-2 p-2"
 					blur={{ flag: false }}
 				>
@@ -48,7 +48,7 @@ const NavBarSetting = () => {
 					onClick={() => {
 						setNavBar?.({ position: "left" });
 					}}
-					bgFreground={navBar.position === "left"}
+					active={navBar.position === "left"}
 					class="aspect-square flex items-center gap-2 p-2"
 					blur={{ flag: false }}
 				>
