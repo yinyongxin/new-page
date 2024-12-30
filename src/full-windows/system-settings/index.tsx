@@ -11,7 +11,7 @@ const SystemSettings = () => {
 
 	return (
 		<FullScreen open={fullWindows.current === "system-settings"}>
-			<div class="h-full overflow-auto">
+			<div class="h-full">
 				<div
 					class={cn(
 						"grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 auto-rows-max grid-flow-dense"
