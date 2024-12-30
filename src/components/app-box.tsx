@@ -40,15 +40,25 @@ export type AppBoxProps = ParentProps<
     blur?: Partial<AppContextType["blur"]>;
     ref?: HTMLDivElement;
     rounded?: "none" | "default" | "sm" | "2xl";
-    bgFreground?: boolean;
+    active?: boolean;
   } & VariantProps<typeof appBoxVariants> &
     Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style"> &
     Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
 >;
 const AppBox = (props: AppBoxProps) => {
-  const { blur } = useContext(AppContext);
+  const { blur, style } = useContext(AppContext);
 
   const { flag = blur.flag } = { ...props.blur };
+  const groundGlassStyle = {
+    "backdrop-blur-sm": flag && blur.size === "sm",
+    "backdrop-blur": flag && blur.size === "default",
+    "backdrop-blur-md": flag && blur.size === "md",
+    "bg-white/40": !props.active,
+    "bg-black/40": !!props.active,
+    "text-black": !props.active,
+    "text-white": !!props.active,
+    // neumorphism: true,
+  };
   return (
     <div
       ref={props.ref}
@@ -58,19 +68,10 @@ const AppBox = (props: AppBoxProps) => {
         props.class,
         appBoxVariants({
           rounded: props.rounded,
-          shadow: props.shadow,
+          shadow: style.value === "groundGlass" ? props.shadow : "none",
         }),
-				'text-xs sm:text-base',
-        {
-          "backdrop-blur-sm": flag && blur.size === "sm",
-          "backdrop-blur": flag && blur.size === "default",
-          "backdrop-blur-md": flag && blur.size === "md",
-          "bg-white/40": !props.bgFreground,
-          "bg-black/40": !!props.bgFreground,
-          "text-black": !props.bgFreground,
-          "text-white": !!props.bgFreground,
-          // neumorphism: true,
-        },
+        "text-xs sm:text-base",
+        style.value === "groundGlass" ? groundGlassStyle : "neumorphism",
       ])}
     >
       {props.children}
