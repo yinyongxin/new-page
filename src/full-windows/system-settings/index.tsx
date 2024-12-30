@@ -1,12 +1,13 @@
 import FullScreen from "../../components/full-screen";
-import { useContext } from "solid-js";
+import { Show, useContext } from "solid-js";
 import { AppContext } from "../../app-conetent";
 import { cn } from "../../utils/style";
 import BgSetting from "./bg-setting";
 import NavBarSetting from "./navBar-setting";
+import StyleSetting from "./style-setting";
 
 const SystemSettings = () => {
-	const { fullWindows } = useContext(AppContext);
+	const { style, fullWindows } = useContext(AppContext);
 
 	return (
 		<FullScreen open={fullWindows.current === "system-settings"}>
@@ -17,7 +18,10 @@ const SystemSettings = () => {
 					)}
 				>
 					<NavBarSetting />
-					<BgSetting />
+					<StyleSetting />
+					<Show when={style.value === "groundGlass"}>
+						<BgSetting />
+					</Show>
 				</div>
 			</div>
 		</FullScreen>

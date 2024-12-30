@@ -19,7 +19,7 @@ const PageMange = () => {
             return (
               <AppBox
                 class="aspect-square rounded-xl flex justify-center items-center relative cursor-pointer"
-                bgFreground={page().key === pages.current}
+                active={page().key === pages.current}
                 onClick={() => {
                   setPages?.({
                     current: page().key,

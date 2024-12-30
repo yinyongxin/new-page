@@ -36,46 +36,57 @@ const appBoxVariants = cva("", {
 });
 
 export type AppBoxProps = ParentProps<
-	{
-		blur?: Partial<AppContextType["blur"]>;
-		ref?: HTMLDivElement;
-		rounded?: "none" | "default" | "sm" | "2xl";
-		bgFreground?: boolean;
-	} & VariantProps<typeof appBoxVariants> &
-		Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style"> &
-		Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
+  {
+    blur?: Partial<AppContextType["blur"]>;
+    ref?: HTMLDivElement;
+    rounded?: "none" | "default" | "sm" | "2xl";
+    active?: boolean;
+    clickActive?: boolean;
+  } & VariantProps<typeof appBoxVariants> &
+    Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style"> &
+    Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
 >;
 const AppBox = (props: AppBoxProps) => {
-	const { blur } = useContext(AppContext);
+  const { blur, style } = useContext(AppContext);
 
-	const { flag = blur.flag } = { ...props.blur };
-	return (
-		<div
-			ref={props.ref}
-			style={props.style}
-			onClick={props.onClick}
-			class={cn([
-				props.class,
-				appBoxVariants({
-					rounded: props.rounded,
-					shadow: props.shadow,
-				}),
-				"text-xs sm:text-base",
-				{
-					"backdrop-blur-sm": flag && blur.size === "sm",
-					"backdrop-blur": flag && blur.size === "default",
-					"backdrop-blur-md": flag && blur.size === "md",
-					"bg-white/40": !props.bgFreground,
-					"bg-black/40": !!props.bgFreground,
-					"text-neutral-900": !props.bgFreground,
-					"text-neutral-100": !!props.bgFreground,
-					// neumorphism: true,
-				},
-			])}
-		>
-			{props.children}
-		</div>
-	);
+  const { flag = blur.flag } = { ...props.blur };
+  const getGroundGlassStyle = () => [
+    {
+      "backdrop-blur-sm": flag && blur.size === "sm",
+      "backdrop-blur": flag && blur.size === "default",
+      "backdrop-blur-md": flag && blur.size === "md",
+      "bg-white/40": !props.active,
+      "bg-black/40": !!props.active,
+      "text-black": !props.active,
+      "text-white": !!props.active,
+    },
+  ];
+  const getNeumorphismStyle = () => [
+    "neumorphism ",
+    {
+      "active:neumorphism-active": props.clickActive,
+      "neumorphism-active": props.active,
+    },
+  ];
+  return (
+    <div
+      ref={props.ref}
+      style={props.style}
+      onClick={props.onClick}
+      class={cn([
+        appBoxVariants({
+          rounded: props.rounded,
+          shadow: style.value === "groundGlass" ? props.shadow : "none",
+        }),
+        style.value === "groundGlass"
+          ? getGroundGlassStyle()
+          : getNeumorphismStyle(),
+        props.class,
+      ])}
+    >
+      {props.children}
+    </div>
+  );
 };
 
 export default AppBox;

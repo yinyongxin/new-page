@@ -39,6 +39,9 @@ export type AppContextType = {
   };
 
   setPages?: SetStoreFunction<AppContextType["pages"]>;
+
+  style: { value: "neumorphism" | "groundGlass" };
+  setStyle?: SetStoreFunction<AppContextType["style"]>;
 };
 
 export const appContextDefaultValue: AppContextType = {
@@ -70,6 +73,7 @@ export const appContextDefaultValue: AppContextType = {
       { key: "front-end", title: "前端", icon: "Code" },
     ],
   },
+  style: { value: "groundGlass" },
 };
 
 export const AppContext = createContext<AppContextType>(
