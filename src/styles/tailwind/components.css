@@ -17,4 +17,18 @@
     @apply neumorphism-bg;
     box-shadow: 6px 6px 24px #bebebe, -6px -6px 24px #ffffff;
   }
+  .neumorphism-sm-active {
+    @apply neumorphism-bg;
+    box-shadow: inset 1px 1px 6px #bebebe, inset -1px -1px 6px #ffffff;
+  }
+
+  .neumorphism-active {
+    @apply neumorphism-bg;
+    box-shadow: inset 3px 3px 12px #bebebe,  inset -3px -3px 12px #ffffff;
+  }
+
+  .neumorphism-md-active {
+    @apply neumorphism-bg;
+    box-shadow: inset 6px 24px #bebebe, inset -6px -6px 24px #ffffff;
+  }
 }

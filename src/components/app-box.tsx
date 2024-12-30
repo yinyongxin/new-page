@@ -49,29 +49,37 @@ const AppBox = (props: AppBoxProps) => {
   const { blur, style } = useContext(AppContext);
 
   const { flag = blur.flag } = { ...props.blur };
-  const groundGlassStyle = {
-    "backdrop-blur-sm": flag && blur.size === "sm",
-    "backdrop-blur": flag && blur.size === "default",
-    "backdrop-blur-md": flag && blur.size === "md",
-    "bg-white/40": !props.active,
-    "bg-black/40": !!props.active,
-    "text-black": !props.active,
-    "text-white": !!props.active,
-    // neumorphism: true,
-  };
+  const getGroundGlassStyle = () => [
+    {
+      "backdrop-blur-sm": flag && blur.size === "sm",
+      "backdrop-blur": flag && blur.size === "default",
+      "backdrop-blur-md": flag && blur.size === "md",
+      "bg-white/40": !props.active,
+      "bg-black/40": !!props.active,
+      "text-black": !props.active,
+      "text-white": !!props.active,
+    },
+  ];
+  const getNeumorphismStyle = () => [
+    "neumorphism",
+    {
+      "neumorphism-active": props.active,
+    },
+  ];
   return (
     <div
       ref={props.ref}
       style={props.style}
       onClick={props.onClick}
       class={cn([
-        props.class,
         appBoxVariants({
           rounded: props.rounded,
           shadow: style.value === "groundGlass" ? props.shadow : "none",
         }),
-        "text-xs sm:text-base",
-        style.value === "groundGlass" ? groundGlassStyle : "neumorphism",
+        style.value === "groundGlass"
+          ? getGroundGlassStyle()
+          : getNeumorphismStyle(),
+        props.class,
       ])}
     >
       {props.children}

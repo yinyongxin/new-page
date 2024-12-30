@@ -13,7 +13,6 @@ import AppBox from "./app-box";
 import { AppContext } from "../app-conetent";
 import { paddingObj } from "../common";
 
-
 export type FullScreenProps = {
   open?: boolean;
   duration?: number;
@@ -38,7 +37,7 @@ const FullScreen: ParentComponent<FullScreenProps> = (props) => {
               },
               {
                 opacity: 0,
-                transform: "scale(1.2)",
+                transform: "scale(1.1)",
               },
               {
                 opacity: 1,
@@ -57,7 +56,7 @@ const FullScreen: ParentComponent<FullScreenProps> = (props) => {
               { opacity: 1, transform: "scale(1)" },
               {
                 opacity: 0,
-                transform: "scale(1.2)",
+                transform: "scale(1.1)",
               },
               {
                 opacity: 0,

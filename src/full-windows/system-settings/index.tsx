@@ -18,6 +18,7 @@ const SystemSettings = () => {
             "grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 grid-flow-dense"
           )}
         >
+          <StyleSetting />
           <div>
             <AppText title={6}>导航栏设置</AppText>
             <div class={cn("grid grid-cols-4 gap-4 mt-2")}>
@@ -71,7 +72,6 @@ const SystemSettings = () => {
           <Show when={style.value === "groundGlass"}>
             <BgSetting />
           </Show>
-          <StyleSetting />
         </div>
       </div>
     </FullScreen>
