@@ -41,6 +41,7 @@ export type AppBoxProps = ParentProps<
     ref?: HTMLDivElement;
     rounded?: "none" | "default" | "sm" | "2xl";
     active?: boolean;
+    clickActive?: boolean;
   } & VariantProps<typeof appBoxVariants> &
     Pick<JSX.HTMLAttributes<HTMLDivElement>, "class" | "style"> &
     Pick<JSX.CustomEventHandlersCamelCase<HTMLDivElement>, "onClick">
@@ -61,8 +62,9 @@ const AppBox = (props: AppBoxProps) => {
     },
   ];
   const getNeumorphismStyle = () => [
-    "neumorphism",
+    "neumorphism ",
     {
+      "active:neumorphism-active": props.clickActive,
       "neumorphism-active": props.active,
     },
   ];
