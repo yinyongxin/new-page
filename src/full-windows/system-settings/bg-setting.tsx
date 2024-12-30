@@ -37,7 +37,7 @@ const BgSetting = () => {
 		}
 	};
 	return (
-		<div class="row-span-3">
+		<div class="row-span-4">
 			<AppText title={6}>背景设置</AppText>
 			<div class="grid grid-cols-2 mt-2 gap-3">
 				<AppBox
