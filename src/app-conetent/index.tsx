@@ -46,7 +46,7 @@ export type AppContextType = {
 
 export const appContextDefaultValue: AppContextType = {
   navBar: {
-    position: "left",
+    position: "bottom",
   },
   blur: {
     flag: true,
