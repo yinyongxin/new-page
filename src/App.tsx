@@ -38,17 +38,18 @@ function App() {
     >
       <Background />
       <FullWindows />
-      <NavBar />
-      <div class={cn("absolute inset-0", paddingObj[navBar.position])}>
+      {/* <div class={cn("absolute inset-0", paddingObj[navBar.position])}>
         {pages.current}
-        <AppGridStack
+      </div> */}
+      <div class="p-6">
+      <AppGridStack
           items={[
             {
               itemProps: {
                 row: 1,
                 col: 1,
               },
-              content: <div>asfasf</div>,
+              content: <div>22323</div>,
             },
             {
               itemProps: {
@@ -60,6 +61,7 @@ function App() {
           ]}
         />
       </div>
+      
     </AppContext.Provider>
   );
 }

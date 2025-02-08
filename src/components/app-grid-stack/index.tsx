@@ -13,16 +13,9 @@ const AppGridStack = (props: AppGridStackProps) => {
   let gridStack!: HTMLDivElement;
   onMount(() => {
     var grid = GridStack.init(
-      options,
+      {...options, column: 4},
       gridStack
     );
-    // const serializedData = [
-    //   { x: 0, y: 0, w: 1, h: 1, content: "item 1" },
-    //   { x: 1, y: 0, w: 1, content: "item 2" },
-    //   { x: 2, y: 0, content: "3" },
-    // ];
-
-    // grid.load(serializedData);
   });
   return (
     <div ref={gridStack}>

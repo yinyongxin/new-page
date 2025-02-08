@@ -62,7 +62,7 @@ const AppBox = (props: AppBoxProps) => {
     },
   ];
   const getNeumorphismStyle = () => [
-    "neumorphism ",
+    "neumorphism",
     {
       "active:neumorphism-active": props.clickActive,
       "neumorphism-active": props.active,
